@@ -142,7 +142,7 @@ sudo apt install ros-jazzy-xacro ros-jazzy-joint-state-publisher-gui
 Move to your ros workspace, inside /src folder (where all your packages are located) 
 ```
 # Terminal
-git clone https://github.com/AlePuglisi/ROV-Ricketts-ros2.git
+git clone https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2.git
 ```
 then, move back to the workspace folder (before /src), and build your workspace.<br/>
 Now you are ready to test this project!<br/>
