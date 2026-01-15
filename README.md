@@ -31,7 +31,7 @@ Moreover, from the moment in which I was working on this project (April 2025), G
 <img width=375 heigth=250 src=https://github.com/user-attachments/assets/89e07d87-b08a-4938-88d9-c57e42595556>
 
 > [!IMPORTANT]
-> To visualize the documentation of the commands only, look at this [commands sheet readme](https://github.com/AlePuglisi/ROV-Ricketts-ros2/blob/main/COMMANDS-SHEET.md). 
+> To visualize the documentation of the commands only, look at this [commands sheet readme](https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/blob/main/gazebo_ws/COMMANDS-SHEET.md). 
 
 During this project, I want to learn how to set up an underwater world simulation with ROS2 and Gazebo. <br/>
 Gazebo Classic has reached its end of life, and it is time to learn how to use Gazebo sim. <br/>
