@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<scenario>
+
+	<!-- <materials>
+		<material name="Neutral" density="1000.0" restitution="0.5"/>
+		<material name="Foam" density="180.0" restitution="0.5"/>
+		<material name="Polyamid" density="1100.0" restitution="0.1"/>
+		<material name="Jelly" density="300.0" restitution="0.5"/>
+
+		<friction_table>
+			<friction material1="Neutral" material2="Neutral" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Foam" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Polyamid" static="0.2" dynamic="0.05"/>
+
+            <friction material1="Polyamid" material2="Polyamid" static="0.1" dynamic="0.05"/>
+			<friction material1="Polyamid" material2="Foam" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Foam" material2="Foam" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Jelly" material2="Jelly" static="0.5" dynamic="0.2"/>
+			<friction material1="Jelly" material2="Foam" static="0.5" dynamic="0.2"/>
+			<friction material1="Jelly" material2="Neutral" static="0.5" dynamic="0.2"/>
+			<friction material1="Jelly" material2="Polyamid" static="0.5" dynamic="0.2"/>
+
+		</friction_table>
+	</materials> -->
+
+    <materials>
+		<material name="Neutral" density="1000.0" restitution="0.5"/>
+
+		<!-- Subsea Buoyancy Foam: R-3318 -->
+		<material name="Foam" density="40.0" restitution="0.3"/>
+		<!-- Fake Buoyancy Foam -->
+		<material name="InternalFoam" density="30.0" restitution="0.3"/>
+		<!-- BlueROV2 Base Frames -->
+		<material name="Polyethylene" density="400.0" restitution="0.75"/>
+		<!-- BlueROV2 Thrusters Duct -->
+		<material name="Polycarbonate" density="435.0" restitution="0.75"/>
+		<!-- BlueROV2 Tubes -->
+		<material name="Acrylic" density="1100.0" restitution="0.9"/>
+
+		<material name="Ballast" density="570.0" restitution="0.75"/>
+
+		<friction_table>
+			<friction material1="Neutral" material2="Neutral" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Foam" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Polyethylene" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Polycarbonate" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Foam" material2="Foam" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Polyethylene" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Polycarbonate" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Polyethylene" material2="Polyethylene" static="0.5" dynamic="0.2"/>
+			<friction material1="Polyethylene" material2="Polycarbonate" static="0.5" dynamic="0.2"/>	
+			<friction material1="Polyethylene" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Polyethylene" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Polyethylene" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Acrylic" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Acrylic" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Acrylic" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="InternalFoam" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="InternalFoam" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Ballast" material2="Ballast" static="0.5" dynamic="0.2"/>
+		</friction_table>
+	</materials>
+
+    <looks>
+        <look name="black" gray="0.01" roughness="0.2" metalness="0.0"/>
+		<look name="blue" rgb="0.0 0.3 0.8" roughness="0.0"/>
+        <look name="yellow" rgb="1.0 0.9 0.0" roughness="0.3"/>
+        <look name="gray" gray="1" roughness="0.2" metalness="0.0"/>
+		<look name="manipulator" rgb="0.2 0.15 0.1" roughness="0.6" metalness="0.8"/>
+        <look name="transparent" gray="1.0" roughness="0.0" metalness="0.0"/>
+		<look name="propeller" rgb="0.0 0.1 0.85" roughness="0.3" metalness="0.0"/>
+
+		<look name="dinner_plate_jelly" rgb="0.52 0.72 0.89" roughness="0.3"/>
+
+		<look name="ricketts_float" gray="1.0" roughness="1.0" texture="ricketts/texture/ricketts_float.png"/>
+		<look name="ricketts_frame" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_frame.png"/>
+		<look name="ricketts_ducts" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_ducts.png"/>
+		<look name="ricketts_equipment" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_equipment.png"/>
+		<look name="ricketts_propeller" rgb="0.62 0.45 0.36" roughness="0.0"/>
+    </looks>    
+
+</scenario>

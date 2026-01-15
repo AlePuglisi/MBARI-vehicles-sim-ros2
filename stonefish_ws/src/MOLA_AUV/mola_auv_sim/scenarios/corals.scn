@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<scenario>
+
+    <looks>
+        <look name="CoralColors1" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/corals0.png"
+                                                                        normal_map="corals/texture/corals_normal.png"/>
+        <look name="CoralColors2" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/corals1.png"
+                                                                        normal_map="corals/texture/corals_normal.png"/>
+        <look name="CoralTree" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/coralsTree.png"
+                                                                        normal_map="corals/texture/coralsTree_normal.png"/>
+        <look name="GiantClaim" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/giant_claim.png"/>
+                                                                        <!-- normal_map="corals/texture/coralsTree_normal.png"/> -->
+    </looks>   
+
+	<static name="CoralBrain_Brown01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/brain.obj" scale="3.0" convex="true"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="0.98 -3.25 8.2" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralBrain_Brown02" type="model">
+		<physical>
+			<mesh filename="corals/mesh/brain.obj" scale="1.0" convex="true"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="0.9 -2.18 8.15" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralBrain_Brown03" type="model">
+		<physical>
+			<mesh filename="corals/mesh/brain.obj" scale="2.5.0" convex="true"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="1.45 -2.45 8.2" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralBrain_Brown04" type="model">
+		<physical>
+			<mesh filename="corals/mesh/brain.obj" scale="1.0" convex="true"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="0.66 -2.61 8.2" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<static name="CoralTubolar_Yellow01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tubolar.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="-0.19 -0.1 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralTubolar_Yellow02" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tubolar.obj" scale="3.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="1.78 -3.28 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="CoralTubolarBig_Red01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tubolar_big.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors2"/>
+		<world_transform xyz="0.85 -0.8 8.0" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="CoralTubolarBig_Red02" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tubolar_big.obj" scale="1.5" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors2"/>
+		<world_transform xyz="1.0 -2.56 8.15" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="CoralTubolarBig_Yellow01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tubolar_big.obj" scale="1.5" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="2.19 -2.52 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="CoralTubolarBig_Yellow02" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tubolar_big.obj" scale="1.5" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="2.65 -2.09 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="Sponge_Yellow01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/sponge.obj" scale="2.0" convex="true"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralColors1"/>
+		<world_transform xyz="1.31 -1.41 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="CoralTree_01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/tree.obj" scale="2.5" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralTree"/>
+		<world_transform xyz="1.96 0.29 7.8" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<!-- <static name="GiantClaims01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/giant_claim.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="GiantClaim"/>
+		<world_transform xyz="3.0 3.0 7.8" rpy="0.0 0.0 0.0"/>
+	</static> -->
+
+	<!-- <static name="CoralRestoration01" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<static name="CoralRestoration02" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="8.0 8.0 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<static name="CoralRestoration03" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="6.5 3.0 8.1" rpy="0.0 0.0 0.0"/>
+	</static> -->
+
+</scenario>

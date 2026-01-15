@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<scenario>
+
+	<environment>
+		<ned latitude="41.7777" longitude="3.0333"/>
+
+		<ocean>
+			<water density="1031.0" jerlov="0.15"/>
+		</ocean>
+
+		<atmosphere>
+			<sun azimuth="20.0" elevation="50.0"/>
+		</atmosphere>
+
+	</environment>
+
+    <include file="$(find ricketts_sim)/scenarios/materials_looks.scn"/>
+
+	<robot name="ricketts" fixed="false" self_collisions="false">
+		
+		<!--   BASE MULTI-LINK   -->
+		<base_link name="base" type="compound" physics="submerged">
+			<external_part name="float" type="model" physics="submerged" buoyant="true">
+				<physical>
+					<mesh filename="mesh/rov_doc_ricketts/float.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<visual>
+					<mesh filename="mesh/rov_doc_ricketts/float.obj" scale="1.0"/>
+					<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+				</visual>
+				<material name="Polyamid"/>
+				<look name="float_texture"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<internal_part name="LeftFoam" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.3" height="0.8"/>
+				<origin rpy="0.0 1.57 0.0" xyz="-0.86 -0.55 -1.04"/>
+				<material name="Foam"/>
+				<look name="manipulator"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+			<internal_part name="RightFoam" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.3" height="0.8"/>
+				<origin rpy="0.0 1.57 0.0" xyz="-0.86 0.55 -1.04"/>
+				<material name="Foam"/>
+				<look name="manipulator"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+			<internal_part name="FrontFoam" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.3" height="0.6"/>
+				<origin rpy="1.57 0.0 0.0" xyz="0.86 0.0 -1.0"/>
+				<material name="Foam"/>
+				<look name="manipulator"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+		</base_link>
+
+			
+		<link name="logo" type="model" physics="submerged" buoyant="true">
+			<physical>
+				<mesh filename="mesh/rov_doc_ricketts/float_logo.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="mesh/rov_doc_ricketts/float_logo.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Polyamid"/>
+			<look name="logo_texture"/>
+		</link>
+
+		<joint name="base_logo" type="fixed">
+			<parent name="base"/>
+			<child name="logo"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+		</joint>
+
+		<link name="frame" type="model" physics="submerged" buoyant="true">
+			<physical>
+				<mesh filename="mesh/rov_doc_ricketts/frame.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="mesh/rov_doc_ricketts/frame.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Polyamid"/>
+			<look name="frame_texture"/>
+		</link>
+
+		<joint name="base_frame" type="fixed">
+			<parent name="base"/>
+			<child name="frame"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+		</joint>
+
+		<link name="equipment" type="model" physics="submerged" buoyant="true">
+			<physical>
+				<mesh filename="mesh/rov_doc_ricketts/equipment_group.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="mesh/rov_doc_ricketts/equipment_group.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Polyamid"/>
+			<look name="equipment_texture"/>
+		</link>
+
+		<joint name="base_equipment" type="fixed">
+			<parent name="base"/>
+			<child name="equipment"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+		</joint>
+
+		<link name="thrusters" type="model" physics="submerged" buoyant="true">
+			<physical>
+				<mesh filename="mesh/rov_doc_ricketts/thrusters.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="mesh/rov_doc_ricketts/thrusters.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Polyamid"/>
+			<look name="thrusters_texture"/>
+		</link>
+
+		<joint name="base_thrusters" type="fixed">
+			<parent name="base"/>
+			<child name="thrusters"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+		</joint>
+
+		<!--   TODO: ROBOT ARM   -->
+
+
+		<!--   TODO: THRUSTERS   -->
+
+		
+		<!--   TODO: ACTUATORS   -->
+
+
+		<!--   TODO: SENSORS   -->
+
+		<world_transform rpy="0.0 0.0 0.0" xyz="5.0 0 0.25"/>
+
+		<!--   TODO: ROS SUBSCRIBERS / PUBLISHER THRUST/FORCES   -->
+		<!-- <ros_subscriber thrusters="/bluerov/controller/thruster_setpoints_sim" forces="/bluerov/controller/thruster_manager/input_stamped"/>
+		<ros_publisher thrusters="/bluerov/controller/thruster_state" forces="/bluerov/controller/thruster_manager/output"/> -->
+		
+		<ros_base_link_transforms publish="true"/>
+	
+	</robot>
+
+</scenario>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <material name="blue">
+        <color rgba="0 0.3 0.8 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="blue_propeller">
+        <color rgba="0 0.1 0.85 1"/>
+    </material>
+
+    <material name="glass">
+        <color rgba="1.0 1.0 1.0 0.5"/>
+    </material>
+
+    <material name="yellow">
+        <color rgba="0.898 0.769 0.145 1.0"/>
+    </material>
+
+    <material name="base">
+        <texture filename="package://mola_auv_sim/data/mola_auv/texture/base.png"/>
+    </material>
+    <material name="light">
+        <texture filename="package://mola_auv_sim/data/mola_auv/texture/lightL.png"/>
+    </material>
+</robot>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<scenario>
+    
+	<animated name="DinnerPlateJelly" type="model" collisions="false">
+		<physical>
+			<mesh filename="mesh/dinner_plate_jelly/dinner_plate_jelly_phy.obj" scale="1.0"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<visual>
+			<mesh filename="mesh/dinner_plate_jelly/dinner_plate_jelly.obj" scale="1.0"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</visual>
+		<material name="Neutral"/>
+		<look name="dinner_plate_jelly"/>
+		<trajectory type="spline" playback="boomerang">
+			<keypoint time="0.0" xyz="0.0 0.0 10.0" rpy="0.0 0.0 0.0"/>
+			<keypoint time="20.0" xyz="0.0 2.0 8.0" rpy="0.0 0.0 0.1"/>
+			<keypoint time="40.0" xyz="1.0 2.0 6.0" rpy="0.0 0.0 0.2"/>
+		</trajectory>
+	</animated>
+
+</scenario>

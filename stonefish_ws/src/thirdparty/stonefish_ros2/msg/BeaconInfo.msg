@@ -1,0 +1,8 @@
+std_msgs/Header header
+uint8 beacon_id
+float32 range
+float32 azimuth
+float32 elevation
+geometry_msgs/Point relative_position
+geometry_msgs/Quaternion local_orientation
+float32 local_depth

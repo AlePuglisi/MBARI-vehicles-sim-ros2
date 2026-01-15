@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="arm_macro" params="name *origin">
+    <joint name="${name}_base_joint" type="revolute">
+      <xacro:insert_block name="origin"/>
+      <parent link="base_link" />
+      <child link="${name}_base" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="-0.96"
+        upper="3.14"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_base">
+      <inertial>
+        <origin
+          xyz="0.01134495 -0.00080126  0.07665164"
+          rpy="0 0 0" />
+        <mass
+          value="12.163342453968937" />
+        <inertia
+          ixx="0.05081885"
+          ixy="-0.00077462"
+          ixz="-0.00807678"
+          iyy="0.05298367"
+          iyz="0.00259261"
+          izz="0.05370248" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_base.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_base.stl" />
+        </geometry>
+      </collision>
+    </link>
+    
+    <joint name="${name}_base_link1" type="revolute">
+      <origin
+          xyz="0.122041  -0.036335   0.175604 "
+          rpy="0 0 -0.3106" />
+      <parent link="${name}_base" />
+      <child link="${name}_link1" />
+      <axis xyz="0 1 0" />
+      <limit
+        lower="-0.15"
+        upper="2.1"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_link1">
+      <inertial>
+        <origin
+          xyz="7.04110282E-02 2.16091000E-04 4.1535857E-01"
+          rpy="0 0 0" />
+        <mass
+          value="43.95541245252249" />
+        <inertia
+          ixx="3.04204131"
+          ixy="-4.17052480E-04"
+          ixz="-5.59797453E-01"
+          iyy="3.16120093"
+          iyz="-1.95647591E-03"
+          izz="2.00543143E-01" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link1.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link1.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_link1_link2" type="revolute">
+      <origin
+          xyz="  0.2440 0.0  0.815517 "
+          rpy="0 0 0" />
+      <parent link="${name}_link1" />
+      <child link="${name}_link2" />
+      <axis xyz="0 1 0" />
+      <limit
+        lower="-2.0"
+        upper="0.44"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_link2">
+      <inertial>
+        <origin
+          xyz=" 9.08256757E-02 -1.58715333E-05 -1.70601401E-01"
+          rpy="0 0 0" />
+        <mass
+          value="24.005454220844868" />
+        <inertia
+          ixx="4.36920515E-01"
+          ixy="1.93469299E-05"
+          ixz="2.09243988E-01"
+          iyy="5.47566230E-01"
+          iyz="-3.62940439E-05"
+          izz="1.55283178E-01" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link2.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link2.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_link2_link3" type="revolute">
+      <origin
+          xyz="  0.2268 0.0 -0.425988  "
+          rpy="0 0 0" />
+      <parent link="${name}_link2" />
+      <child link="${name}_link3" />
+      <axis xyz="0 1 0" />
+      <limit
+        lower="-1.85"
+        upper="1.06"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_link3">
+      <inertial>
+        <origin
+          xyz=" 5.26816130E-03 -2.17487897E-05 -5.25279893E-02"
+          rpy="0 0 0" />
+        <mass
+          value="8.578106028345596" />
+        <inertia
+          ixx="3.21102269E-02"
+          ixy="-4.08710931E-09"
+          ixz="1.80211987E-03"
+          iyy="3.21452897E-02"
+          iyz="-3.23958602E-07"
+          izz="1.42643585E-02" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link3.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link3.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_link3_link4" type="revolute">
+      <origin
+          xyz="0.0127 0.0 -0.1270"
+          rpy="0 -0.1007 0" />
+      <parent link="${name}_link3" />
+      <child link="${name}_link4" />
+      <axis xyz="1  0 0" />
+      <limit
+        lower="-1.57"
+        upper="1.57"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_link4">
+      <inertial>
+        <origin
+          xyz=" 2.31483204E-06 7.46926906E-06 5.42792945E-03"
+          rpy="0 0 0" />
+        <mass
+          value="1.7692419840699356" />
+        <inertia
+          ixx="2.78013796E-03"
+          ixy="-7.85305053E-06"
+          ixz="1.44605891E-06"
+          iyy="4.53245580E-03"
+          iyz="-2.37399601E-06"
+          izz="5.55563633E-03" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 -0.05258 "
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link4.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link4.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_link4_link5" type="continuous">
+      <origin
+          xyz="0.0 -0.000111 -0.070007"
+          rpy="${pi} 0 0" />
+      <parent link="${name}_link4" />
+      <child link="${name}_link5" />
+      <axis xyz="0  0 1" />
+      <limit
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_link5">
+      <inertial>
+        <origin
+          xyz=" -5.89054999E-07 -8.17797813E-07  6.47509577E-02"
+          rpy="0 0 0" />
+        <mass
+          value="5.560669306410974" />
+        <inertia
+          ixx="1.24864100E-02"
+          ixy="1.47362354E-08"
+          ixz="-3.64355893E-08"
+          iyy="1.24863733E-02"
+          iyz="6.31833371E-08"
+          izz="8.03611637e-03" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link5.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/arm_link5.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_link5_claw_right" type="revolute">
+      <origin
+          xyz=" 0.0042 -0.0328 0.14"
+          rpy="0 0 0" />
+      <parent link="${name}_link5" />
+      <child link="${name}_claw_right" />
+      <axis xyz="1 0 0" />
+      <limit
+        lower="0"
+        upper="1.04"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_claw_right">
+      <inertial>
+        <origin
+          xyz=" 0.00067111 0.00635971 0.06727982"
+          rpy="0 0 0" />
+        <mass
+          value="0.7601912208661399" />
+        <inertia
+          ixx="1.11087526E-03"
+          ixy="-9.17650911E-07"
+          ixz="-9.18706375E-06"
+          iyy="1.20506655E-03"
+          iyz="-1.54884566E-04"
+          izz="2.32928780E-04" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/grip_claw.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/grip_claw.stl" />
+        </geometry>
+      </collision>
+    </link>
+  
+    <joint name="${name}_link5_claw_left" type="revolute">
+      <mimic joint="${name}_link5_claw_right" multiplier="1" offset="0"/>
+      <origin
+          xyz=" 0.0042 0.0328 0.14"
+          rpy="0 0 ${pi}" />
+      <parent link="${name}_link5" />
+      <child link="${name}_claw_left" />
+      <axis xyz="1 0 0" />
+      <limit
+        lower="0"
+        upper="1.04"
+        effort="20"
+        velocity="10" />
+      <dynamics damping="0.1" friction="0.3"/>
+    </joint>
+
+    <link
+      name="${name}_claw_left">
+      <inertial>
+        <origin
+          xyz=" 0.00067111 0.00635971 0.06727982"
+          rpy="0 0 0" />
+        <mass
+          value="0.7601912208661399" />
+        <inertia
+          ixx="1.11087526E-03"
+          ixy="-9.17650911E-07"
+          ixz="-9.18706375E-06"
+          iyy="1.20506655E-03"
+          iyz="-1.54884566E-04"
+          izz="2.32928780E-04" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/grip_claw.stl" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/grip_claw.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_hand_tool" type="fixed">
+      <origin
+          xyz=" 0 0  0.271942"
+          rpy="0 0 ${pi}" />
+      <parent link="${name}_link5" />
+      <child link="${name}_tool" />
+    </joint>
+
+    <link name="${name}_tool" />
+
+  </xacro:macro>
+</robot>

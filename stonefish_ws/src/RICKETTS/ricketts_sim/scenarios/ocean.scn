@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<scenario>
+
+    <!--   Define environment state (water type, currents, atmosphere, ...)   -->
+	<environment>
+		<ned latitude="41.7777" longitude="3.0333"/>
+
+		<ocean>
+			<water density="1031.0" jerlov="0.15"/>
+
+			<waves height="1.0"/>
+
+			<particles enabled="true"/>
+
+            <current type="uniform">
+                <velocity xyz="10.0 10.0 0.0"/>
+            </current>
+            <current type="jet">
+                <center xyz="0.0 0.0 3.0"/>
+                <outlet radius="100.0"/>
+                <velocity xyz="0.0 2.0 0.0"/>
+            </current>
+		</ocean>
+
+		<atmosphere>
+			<sun azimuth="20.0" elevation="50.0"/>
+		</atmosphere>
+
+	</environment>
+
+    <!--   Inlcude utils (materials and looks)  -->
+    <include file="$(find ricketts_sim)/scenarios/materials_looks.scn"/>
+
+    <!--   Inlcude objects (obstacles, map features, dynamic objects, creatures)  -->
+    <!-- <include file="$(find ricketts_sim)/scenarios/creatures_animated.scn"/> -->
+    <!-- <include file="$(find ricketts_sim)/scenarios/creatures_dynamics.scn"/> -->
+
+    <!--   Inlcude Addiitonal world actuators/sensors (lights, cameras, etc) not attached to Robots  -->
+
+    <!--   Inlcude Robots  -->
+    <include file="$(find ricketts_sim)/scenarios/ricketts_simple.scn"/>
+
+</scenario>

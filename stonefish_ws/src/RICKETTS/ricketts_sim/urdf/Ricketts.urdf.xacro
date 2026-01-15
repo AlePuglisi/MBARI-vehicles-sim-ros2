@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="Rov_Ricketts" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="base.xacro" />
+  <xacro:include filename="thrusters.xacro" />
+
+
+  <!-- Use macro to define Thrusters: front_left, front_right, rear_right, rear_left, up_rear, up_front_left, up_front_right -->  
+  <!-- Front Thrusters -->
+  <xacro:thruster_macro name="front_left">
+             <origin xyz="-0.547848 0.4574 0.120838" rpy="${pi/4} ${pi/2} 0"/>
+  </xacro:thruster_macro>
+  <xacro:thruster_macro name="front_right">
+             <origin xyz="-0.547848 -0.4574 0.120838" rpy="${-pi/4} ${pi/2} 0"/>
+  </xacro:thruster_macro>
+  <!-- Back Thrusters -->
+  <xacro:thruster_macro name="rear_right">
+             <origin xyz="-3.10256  -0.584898 0.121177" rpy="${-pi/2 -pi/4} ${pi/2} 0"/>
+  </xacro:thruster_macro>
+  <xacro:thruster_macro name="rear_left">
+             <origin xyz="-3.10256   0.584898 0.121177" rpy="${pi/2 + pi/4} ${pi/2} 0"/>
+  </xacro:thruster_macro>
+   <!-- Up Thrusters --> 
+  <xacro:thruster_macro name="up_rear">
+             <origin xyz="-3.10346   -0.000003 0.787413" rpy="0 0 0"/>
+  </xacro:thruster_macro>
+  <xacro:thruster_macro name="up_front_left">
+             <origin xyz="-1.23346   0.652772  0.814842" rpy="${15/180 * pi} 0 0"/>
+  </xacro:thruster_macro>
+  <xacro:thruster_macro name="up_front_right">
+             <origin xyz="-1.23346   -0.652772 0.814842" rpy="${-15/180 * pi} 0 0"/>
+  </xacro:thruster_macro>
+  
+
+   <!-- Conditional Arm Loading, accordingly to launch argument --> 
+  <xacro:arg name="load_arm" default="false" />
+
+  <xacro:if value="$(arg load_arm)">
+    <xacro:include filename="arm.xacro" />
+    <xacro:arm_macro name="arm">
+              <origin xyz="${-0.291179+1.8143} ${0.967229-0.004215} ${-0.50857-0.1132-0.560595}" rpy="0 0 0" />
+    </xacro:arm_macro>
+  </xacro:if>
+
+  <!-- Load joint state publisher gazebo plugin -->
+
+  <xacro:joint_states_publisher_macro load_arm="load_arm" name="arm"/>
+
+
+</robot>

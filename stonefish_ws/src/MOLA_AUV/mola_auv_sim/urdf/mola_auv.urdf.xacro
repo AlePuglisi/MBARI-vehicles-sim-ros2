@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="mola_auv" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="materials.xacro" />
+
+    <link name="mola_auv_base">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/mola_auv_base.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <!-- <material name="base"/> -->
+      </visual>
+    </link>
+
+    <link name="mola_auv_frame">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/mola_auv_frame.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+    </link>
+
+    <link name="mola_auv_dome">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/mola_auv_dome.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="glass"/>
+      </visual>
+    </link>
+
+
+    <link name="mola_auv_lightL">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/mola_auv_lightL.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <!-- <material name="light"/> -->
+      </visual>
+    </link>
+
+    <link name="mola_auv_lightR">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/mola_auv_lightR.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <!-- <material name="light"/> -->
+      </visual>
+    </link>
+
+    <!-- PROPELLER LFU -->
+    <link name="mola_auv_propLFU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/ccw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propLFU" type="fixed">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLFU" /> 
+    </joint>
+
+    <!-- PROPELLER LFD -->
+    <link name="mola_auv_propLFD">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/cw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFD" type="continuous">
+      <origin rpy="0.0 ${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLFD" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propLFD" type="fixed">
+      <origin rpy="0.0 ${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLFD" /> 
+    </joint>
+
+   <!-- PROPELLER RFU -->
+    <link name="mola_auv_propRFU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/cw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propRFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} ${135*pi/180}" xyz="0.3 0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propRFU" type="fixed">
+      <origin rpy="0.0 -${45*pi/180} ${135*pi/180}" xyz="0.3 0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRFU" /> 
+    </joint>
+
+
+   <!-- PROPELLER RFD -->
+    <link name="mola_auv_propRFD">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/ccw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propRFD" type="continuous">
+      <origin rpy="0.0 ${45*pi/180} ${135*pi/180}" xyz="0.3 0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRFD" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propRFD" type="fixed">
+      <origin rpy="0.0 ${45*pi/180} ${135*pi/180}" xyz="0.3 0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRFD" /> 
+    </joint>
+
+    <!-- PROPELLER LBU -->
+    <link name="mola_auv_propLBU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/ccw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLBU" type="continuous">
+      <origin rpy="0.0 ${45*pi/180} ${135*pi/180}" xyz="-0.3 -0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLBU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propLBU" type="fixed">
+      <origin rpy="0.0 ${45*pi/180} ${135*pi/180}" xyz="-0.3 -0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLBU" /> 
+    </joint>
+
+   <!-- PROPELLER LBD -->
+    <link name="mola_auv_propLBD">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/cw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLBD" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} ${135*pi/180}" xyz="-0.3 -0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLBD" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propLBD" type="fixed">
+      <origin rpy="0.0 -${45*pi/180} ${135*pi/180}" xyz="-0.3 -0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propLBD" /> 
+    </joint>
+
+    <!-- PROPELLER RBU -->
+    <link name="mola_auv_propRBU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/cw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propRBU" type="continuous">
+      <origin rpy="0.0 ${45*pi/180} -${135*pi/180}" xyz="-0.3 0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRBU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propRBU" type="fixed">
+      <origin rpy="0.0 ${45*pi/180} -${135*pi/180}" xyz="-0.3 0.182 -0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRBU" /> 
+    </joint>
+
+
+    <!-- PROPELLER RBD -->
+    <link name="mola_auv_propRBD">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://mola_auv_sim/data/mola_auv/mesh/rviz/ccw.stl" scale="1.17 1.17 1.17"/>
+        </geometry>
+        <material name="yellow"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propRBD" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="-0.3 0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRBD" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propRBD" type="fixed">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="-0.3 0.182 0.105"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_propRBD" /> 
+    </joint>
+
+
+
+    <joint name="base_frame" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_frame" /> 
+    </joint>
+    <joint name="base_dome" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="mola_auv_base" />
+      <child link="mola_auv_dome" /> 
+    </joint>
+
+
+		<joint name="base_lightL" type="revolute">
+			<parent link="mola_auv_base"/>
+			<child link="mola_auv_lightL"/>
+			<origin xyz="0.32 -0.225 -0.19" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit lower="0.0" upper="${pi/2}" effort="1.0" velocity="1.0"/>
+		</joint>
+		<joint name="base_lightR" type="revolute">
+			<parent link="mola_auv_base"/>
+			<child link="mola_auv_lightR"/>
+			<origin xyz="0.32 0.225 -0.19" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit lower="-${pi/2}" upper="0.0" effort="1.0" velocity="1.0"/>
+		</joint>
+
+</robot>

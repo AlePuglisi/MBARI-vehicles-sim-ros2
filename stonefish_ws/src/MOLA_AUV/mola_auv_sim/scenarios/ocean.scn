@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<scenario>	    
+    <!--   Define environment state (water type, currents, atmosphere, ...)   -->
+	<environment>
+		<ned latitude="41.7777" longitude="3.0333"/>
+
+		<ocean>
+			<water density="1031.0" jerlov="0.15"/>
+
+			<waves height="0.0"/>
+
+			<particles enabled="true"/>
+
+            <current type="uniform">
+                <velocity xyz="10.0 10.0 0.0"/>
+            </current>
+            <current type="jet">
+                <center xyz="0.0 0.0 3.0"/>
+                <outlet radius="100.0"/>
+                <velocity xyz="0.0 2.0 0.0"/>
+            </current>
+            
+		</ocean>
+
+		<atmosphere>
+			<sun azimuth="20.0" elevation="50.0"/>
+		</atmosphere>
+
+	</environment>
+
+    <!--   Inlcude utils (materials and looks)  -->
+    <include file="$(find mola_auv_sim)/scenarios/materials_looks.scn"/>
+
+    <!--   Inlcude objects (obstacles, map features, dynamic objects, creatures)  -->
+       
+    <!-- <include file="$(find mola_auv_sim)/scenarios/.scn"/> -->
+
+    <static name="SandFloor" type="model">
+        <physical>
+            <mesh filename="sand_floor/mesh/sand_floor.obj" scale="0.3" convex="false"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </physical>
+        <material name="Neutral"/>
+        <look name="sand_floor"/>
+        <world_transform xyz="0.0 0.0 8.0" rpy="0.0 0.0 0.0"/>
+    </static>     
+
+    <static name="CalibChess14x10" type="model">
+        <physical>
+            <mesh filename="calibration_marker/mesh/supportA4.obj" scale="1.0" convex="false"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </physical>
+        <visual>
+            <mesh filename="calibration_marker/mesh/supportA4.obj" scale="1.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </visual>
+        <material name="Neutral"/>
+        <look name="calibChess14x10"/>
+        <world_transform xyz="2.0 0.0 2.0" rpy="0.0 0.0 0.0"/>
+    </static>   
+
+    <include file="$(find mola_auv_sim)/scenarios/corals.scn"/>
+
+    <!--   Inlcude Addiitonal world actuators/sensors (lights, cameras, etc) not attached to Robots  -->
+
+    <!--   Inlcude Robots  -->
+    <include file="$(find mola_auv_sim)/scenarios/mola_auv.scn"/>
+    <!-- <include file="$(find bluerov2_sim)/scenarios/bluerov2.scn"/> -->
+
+
+
+</scenario>

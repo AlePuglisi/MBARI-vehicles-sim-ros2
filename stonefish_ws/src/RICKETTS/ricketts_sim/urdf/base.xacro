@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="base_macro" params="simple_inertia">
+  <!-- This macro is used to define ROV body as UNIQUE LINK. 
+       Useful if you want to set a simple approxiametd Inertia for the overall body -->
+
+    <link name="base_link">
+      <!-- simple box inertia -->
+      <xacro:if value="$(arg simple_inertia)">
+        <xacro:inertial_box mass="4700.0" x="3.3" y="1.80" z="1.80">
+              <origin xyz="0.0 0.0 -0.5" rpy="0 0 0"/>
+        </xacro:inertial_box>
+      </xacro:if>
+      <!-- py script inertia from meshes, not accurate -->
+      <xacro:unless value="$(arg simple_inertia)">
+        <inertial>
+          <origin
+            xyz="0.0 0.0 -0.5"
+            rpy="0 0 0" />
+          <mass
+            value="4700.0" />
+          <inertia
+            ixx="2779.72167757"
+            ixy="-142.69321245"
+            ixz="-59.10699454"
+            iyy="4409.88731132"
+            iyz="31.89417598"
+            izz="4961.49762669" />
+        </inertial>
+      </xacro:unless>
+      <!-- float frame + side logo panel -->
+      <visual>
+        <origin
+          xyz="1.8143 -0.004215 -0.560595"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/floatLogo.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <!-- alluminium structure frame -->
+      <visual>
+        <origin
+          xyz="1.8143 -0.004215 -0.560595"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/frame.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <!-- all 7 thrusters' case frames -->
+      <visual>
+        <origin
+          xyz="1.8143 -0.004215 -0.560595"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/thrusters.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+      <!-- internal equipment frame -->
+      <visual>
+        <origin
+          xyz="1.8143 -0.004215 -0.560595"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="file://$(find rov_ricketts_description)/meshes/equipment.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+
+      <!-- simple box collision model -->
+      <collision>
+        <origin
+          xyz="0 0 -0.3"
+          rpy="0 0 0" />
+        <geometry>
+             <box size="3.5 1.90 2.0"/>
+        </geometry>
+      </collision>
+    
+    </link>
+
+    <!-- dummy link -->
+    <joint name="base_link_frame" type="fixed">
+      <origin rpy="0 0 0" xyz="1.8143 -0.004215 -0.560595"/>
+      <parent link="base_link" />
+      <child link="base_frame" /> 
+    </joint>
+
+    <link name="base_frame">
+    </link>  
+
+    <joint name="base_sonar_frame" type="fixed">
+      <origin rpy="0 0 0" xyz="1.54601 -0.004325 0.730815"/>
+      <parent link="base_link" />
+      <child link="sonar_frame" /> 
+    </joint>  
+    <link name="sonar_frame">
+    <!-- dummy inertial values for gazebo-->
+      <inertial>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <mass
+          value="0.00000001" />
+        <inertia
+          ixx="1e-12"
+          ixy="0"
+          ixz="0"
+          iyy="1e-12"
+          iyz="0"
+          izz="1e-12" />
+      </inertial>
+    </link>  
+  </xacro:macro>
+</robot>

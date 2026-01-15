@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<scenario>	
+
+    <materials>
+		<material name="Neutral" density="1000.0" restitution="0.5"/>
+
+		<!-- Subsea Buoyancy Foam: R-3318 -->
+		<material name="Foam" density="30.0" restitution="0.3"/>
+		<!-- Fake Buoyancy Foam -->
+		<material name="InternalFoam" density="40.0" restitution="0.3"/>
+		<!-- BlueROV2 Base Frames -->
+		<material name="Polyethylene" density="400.0" restitution="0.75"/>
+		<!-- BlueROV2 Thrusters Duct -->
+		<material name="Polycarbonate" density="435.0" restitution="0.75"/>
+		<!-- BlueROV2 Tubes -->
+		<material name="Acrylic" density="300.0" restitution="0.9"/>
+
+		<material name="Ballast" density="408.0" restitution="0.75"/>
+
+		<friction_table>
+			<friction material1="Neutral" material2="Neutral" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Foam" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Polyethylene" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Polycarbonate" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Foam" material2="Foam" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Polyethylene" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Polycarbonate" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Foam" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Polyethylene" material2="Polyethylene" static="0.5" dynamic="0.2"/>
+			<friction material1="Polyethylene" material2="Polycarbonate" static="0.5" dynamic="0.2"/>	
+			<friction material1="Polyethylene" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Polyethylene" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Polyethylene" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Acrylic" material2="Acrylic" static="0.5" dynamic="0.2"/>
+			<friction material1="Acrylic" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="Acrylic" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="InternalFoam" material2="InternalFoam" static="0.5" dynamic="0.2"/>
+			<friction material1="InternalFoam" material2="Ballast" static="0.5" dynamic="0.2"/>
+
+			<friction material1="Ballast" material2="Ballast" static="0.5" dynamic="0.2"/>
+		</friction_table>
+	</materials>
+
+    <looks>
+        <look name="black" gray="0.01" roughness="0.2" metalness="0.0"/>
+		<look name="MOLA_propeller" rgb="0.898 0.769 0.145" roughness="0.3" metalness="0.0"/>
+		
+		<look name="White" rgb="1.0 1.0 1.0" roughness="0.8" metalness="0.0"/>
+
+		<look name="MOLA_base" gray="1.0" roughness="0.5" texture="mola_auv/texture/base.png"/>
+		<look name="MOLA_lightR" gray="1.0" roughness="0.9" texture="mola_auv/texture/lightR.png"/>
+		<look name="MOLA_lightL" gray="1.0" roughness="0.9" texture="mola_auv/texture/lightL.png"/>
+
+		<look name="sonar_oculus" gray="1.0" roughness="0.9" texture="mola_auv/texture/SonarOculus.png"/>
+
+		<!-- <look name="sand_floor" gray="1.0" roughness="0.9" texture="sand_floor/texture/color4k.jpg" normal_map="sand_floor/texture/normal4k_compressed.png"/> -->
+		<look name="sand_floor" gray="1.0" roughness="0.9" texture="sand_floor/texture/color4k.jpg" normal_map="sand_floor/texture/normal4k.png"/>
+		<look name="calibChess14x10" gray="1.0" roughness="0.9" texture="calibration_marker/texture/chessBoard14x10.png"/>
+
+        <look name="transparent" gray="1.0" roughness="0.0" metalness="0.0"/>
+    </looks>   
+
+</scenario>

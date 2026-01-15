@@ -1,0 +1,8 @@
+float64 range_min
+float64 range_max
+float64 rotation_min
+float64 rotation_max
+float64 gain
+---
+bool success
+string message

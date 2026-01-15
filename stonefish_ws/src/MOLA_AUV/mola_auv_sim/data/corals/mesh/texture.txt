@@ -1,0 +1,11 @@
+# Comments about how to properly use the correct color on the corals:
+
+The following color texture are available: 
+-corals0    -> for the all except tree corals, with more yellowinsh colors
+-corals1    -> for the all except tree corals, with more red colors
+-coralsTree -> for tree.obj and tree_small.obj
+
+While the normal texture are: 
+-corals_normal     -> to use with corals0/1
+-coralsTree_normal -> to use with coralsTree
+

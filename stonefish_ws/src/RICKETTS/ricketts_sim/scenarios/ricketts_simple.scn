@@ -1,0 +1,443 @@
+<?xml version="1.0"?>
+<scenario>
+
+	<robot name="ricketts" fixed="false" self_collisions="false">
+
+		<!--   RICKETTS BASE  -->
+		<base_link name="Base" type="compound" physics="submerged">
+
+			<external_part name="Float" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="ricketts/mesh/ricketts_float.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="ricketts/mesh/ricketts_float_phy.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Polyethylene"/>
+				<look name="ricketts_float"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="Frame" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="ricketts/mesh/ricketts_frame.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="ricketts/mesh/ricketts_frame_phy_v2.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Polycarbonate"/>
+				<look name="ricketts_frame"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="Equipment" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="ricketts/mesh/ricketts_equipment.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="ricketts/mesh/ricketts_equipment_phy_v2.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Polycarbonate"/>
+				<look name="ricketts_equipment"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="Ducts" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="ricketts/mesh/ricketts_ducts.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="ricketts/mesh/ricketts_ducts_phy.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Polycarbonate"/>
+				<look name="ricketts_ducts"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<!--   Foams for Buoyancy   -->
+<!-- 
+			<internal_part name="Foam" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.5" height="3.0"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Foam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part>  -->
+
+			<internal_part name="FoamCylUL" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.38" height="2.5"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 -0.5 -1.0"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+			<!-- <internal_part name="FoamCyl" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.35" height="3.0"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 0.0 -1.0"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part>  -->
+			<internal_part name="FoamCylUR" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.38" height="2.5"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 0.5 -1.0"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+
+			<!--   Ballast for Balance  -->
+			<!-- <internal_part name="BallastBack" type="cylinder" physics="submerged" buoyant="false">
+				<dimensions radius="0.1" height="0.0115"/>
+				<origin rpy="0.0 1.57 0.0" xyz="-0.335 0.0 0.0"/>
+				<material name="Ballast"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part>  -->
+
+		</base_link>
+
+		<!--   LINKS  -->
+
+		<!--   Front Camera   -->
+		<!-- <joint name="Base_FrontCameraLink" type="revolute">
+			<parent name="Base"/>
+			<child name="FrontCameraLink"/>
+			<origin xyz="1.17096  0.0 -0.4214" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="-${pi/2}" max="${pi/2}"/>
+		</joint>
+		<link name="FrontCameraLink" type="model" physics="submerged" buoyant="true">
+			<visual>
+				<mesh filename="ricketts/mesh/ricketts_front_camera_link.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<physical>
+				<mesh filename="ricketts/mesh/ricketts_front_camera_link_phy.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<material name="Acrylic"/>
+			<look name="black"/>
+		</link>
+		<joint name="FrontCameraLink_FrontCamera" type="revolute">
+			<parent name="Base"/>
+			<child name="FrontCameraLink"/>
+			<origin xyz="0.0 0.0 ${-0.4214 + 0.18645}" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="-${pi/2}" max="0.0"/>
+		</joint>
+		<link name="FrontCamera" type="model" physics="submerged" buoyant="true">
+			<visual>
+				<mesh filename="ricketts/mesh/ricketts_front_camera.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<physical>
+				<mesh filename="ricketts/mesh/ricketts_front_camera_phy.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<material name="Acrylic"/>
+			<look name="gray"/>
+		</link> -->
+
+
+		<!--   Stereo Camera   -->
+		<!-- <joint name="Base_StereoCameraLink" type="revolute">
+			<parent name="Base"/>
+			<child name="StereoCameraLink"/>
+			<origin xyz="0.32 0.225 -0.19" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="-${pi/2}" max="0.0"/>
+		</joint>
+		<link name="StereoCameraLink" type="model" physics="submerged" buoyant="true">
+			<visual>
+				<mesh filename="ricketts/mesh/ricketts_stereo_camera_link.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<physical>
+				<mesh filename="ricketts/mesh/ricketts_stereo_camera_link_phy.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<material name="Acrylic"/>
+			<look name="transparent"/>
+		</link>
+		<joint name="StereoLink_StereoCamera" type="revolute">
+			<parent name="StereoCameraLink"/>
+			<child name="StereoCamera"/>
+			<origin xyz="0.32 0.225 -0.19" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="-${pi/2}" max="0.0"/>
+		</joint>
+		<link name="StereoCamera" type="model" physics="submerged" buoyant="true">
+			<visual>
+				<mesh filename="ricketts/mesh/ricketts_stereo_camera.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<physical>
+				<mesh filename="ricketts/mesh/ricketts_stereo_camera_phy.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<material name="Acrylic"/>
+			<look name="transparent"/>
+		</link> -->
+
+		<!--   ARM LINKS  -->
+		
+		<!--   THRUSTERS   -->
+
+		<!-- T1 -->
+		<actuator name="ThrusterLU" type="thruster">
+			<origin rpy="0.0 ${pi/2 + pi/12} ${-pi/2}" xyz="0.5862 -0.6582 -1.0133"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!-- T2 -->
+		<actuator name="ThrusterRU" type="thruster">
+			<origin rpy="0.0 ${75/180 * pi} ${-pi/2}" xyz="0.5862 0.6582 -1.0133"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!-- T3 -->
+		<actuator name="ThrusterBU" type="thruster">
+			<origin rpy="0.0 ${pi/2} 0.0" xyz="-1.2834 0.0 -0.9832"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!-- T4 -->
+		<actuator name="ThrusterFL" type="thruster">
+			<origin rpy="0.0 0.0 ${pi/4}" xyz="1.2564 -0.4709 -0.3321"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!-- T5 -->
+		<actuator name="ThrusterFR" type="thruster">
+			<origin rpy="0.0 0.0 ${-pi/4}" xyz="1.2564 0.4709 -0.3321"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!-- T6 -->
+		<actuator name="ThrusterBL" type="thruster">
+			<origin rpy="0.0 0.0 ${pi/2 + pi/4}" xyz="-1.2834 -0.6001 -0.3321"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!-- T7 -->
+		<actuator name="ThrusterBR" type="thruster">
+			<origin rpy="0.0 0.0 ${-pi/2 - pi/4}" xyz="-1.2643  0.6001 -0.3321"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.37" right="true">
+				<mesh filename="ricketts/mesh/propeller.obj" scale="1.0"/>
+				<material name="Neutral"/>
+				<look name="ricketts_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="Base"/>
+		</actuator>
+
+		<!--   MOTORS   -->		
+		<!-- <actuator name="Servo_LightL" type="servo">
+			<joint name="Base_LightL"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+			<initial position="0.0"/>
+		</actuator>
+
+		<actuator name="Servo_LightR" type="servo">
+			<joint name="Base_LightR"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+			<initial position="0.0"/>
+		</actuator> -->
+
+
+		<!--   LIGHTS   -->		
+
+		<!-- <light name="Light_R">
+			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
+			<color temperature="5600.0"/>
+			<origin xyz="-0.01 -0.017 0.19" rpy="0.0 ${pi/2} 0.0"/>
+			<link name="LightR"/>
+			<ros_service topic="/ricketts/lights/right"/>
+		</light>
+		<light name="Light_L">
+			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
+			<color temperature="5600.0"/>
+
+			<origin xyz="-0.01 0.017 0.19" rpy="0.0 ${pi/2}  0.0"/>
+			<link name="LightL"/>
+			<ros_service topic="/ricketts/lights/left"/>
+		</light> -->
+
+
+		<!--   SENSORS   -->
+		<sensor name="Odometry" type="odometry" rate="10.0">
+			<link name="Base"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<!-- <ros_publisher topic="/$(arg robot_name)/dynamics/odometry"/> -->
+			<ros_publisher topic="/ricketts/navigator/odometry"/>
+		</sensor>
+
+		<!-- <sensor name="dvl" type="dvl" rate="5.0">
+			<link name="Base"/>
+			<origin rpy="3.1416 0.0 -0.785" xyz="0.0 0.0 0.0"/>
+			<specs beam_angle="30.0"/>
+			<range velocity="9.0 9.0 9.0" altitude_min="0.5" altitude_max="81.0"/>
+			<noise velocity="0.0015" altitude="0.001"/>
+			<ros_publisher topic="/bluerov/navigator/dvl_sim" altitude_topic="/bluerov/navigator/altitude"/>
+		</sensor> -->
+
+		<!-- <sensor name="ins_filter" type="ins" rate="20.0">
+			<link name="Base"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<noise angle="0.000001745" angular_velocity="0.00001745"/>
+			<ros_publisher topic="/bluerov/navigator/imu"/>
+		</sensor> -->
+               
+		<sensor name="INS" rate="100.0" type="ins">
+			<output_frame rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<noise angular_velocity="0.00001745" linear_acceleration="0.00005"/>
+			<external_sensors dvl="dvl" gps="gps" pressure="pressure"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<link name="Base"/>
+		    <ros_publisher topic="/ricketts/navigator/ins"/>
+		</sensor>
+
+
+		<sensor name="GPS" type="gps" rate="1.0">
+			<link name="Base"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0 0 -0.74"/>
+			<noise ned_position="0.5"/>
+			<ros_publisher topic="/ricketts/navigator/gps"/>
+		</sensor>
+
+		<!--sensor name="multibeam_link" rate="2.0" type="multibeam">
+			<specs fov="60.0" steps="64"/>
+			<range distance_min="0.1" distance_max="50.0"/>
+			<noise distance="0"/>
+			<history samples="1"/>
+			<origin xyz="0.0 0.0 0.15" rpy="0 0.0 1.57"/>
+			<link name="Base"/>
+			<ros_publisher topic="/bluerov/multibeam_link/scan" pcl_topic="/bluerov/multibeam_link/pcd"/>
+		</sensor> -->
+		
+		<!-- <sensor name="camera" rate="10.0" type="camera">
+			<specs resolution_x="1200" resolution_y="800" horizontal_fov="90.0"/>
+			<origin xyz="0.2 0 -0.03" rpy="1.57 0 1.57"/>
+			<link name="FrontCamera"/>
+			<ros_publisher topic="/ricketts/camera"/>
+		</sensor> -->
+			
+		<sensor name="FLS" type="fls" rate="10.0">
+			<specs beams="512" bins="500" horizontal_fov="130.0" vertical_fov="20.0"/>
+			<settings range_min="0.5" range_max="20.0" gain="1.1"/>
+			<noise multiplicative="0.03" additive="0.05"/>
+			<display colormap="hot"/>
+			<origin xyz="0.2 0 0.1" rpy="1.308 0 1.57"/>
+			<link name="Base"/>
+			<ros_publisher topic="/ricketts/fls"/>
+		</sensor>
+
+		<world_transform rpy="0.0 0.0 0.0" xyz="0.0 0 2.0"/>
+
+		<!--   ROS SUBSCRIBERS / PUBLISHER THRUST/FORCES   -->
+		<ros_subscriber thrusters="/ricketts/controller/thruster_setpoints_sim" forces="/ricketts/controller/thruster_manager/input_stamped"/>
+		<ros_publisher thrusters="/ricketts/controller/thruster_state" forces="/ricketts/controller/thruster_manager/output"/>
+
+    	<!-- <ros_joint_subscriber joint_name="Base_LightL" topic="/ricketts/servo/lightL" control_mode="position"/>
+   		<ros_joint_subscriber joint_name="Base_LightR" topic="/ricketts/servo/lightR" control_mode="position"/> -->
+
+		<ros_base_link_transforms publish="true"/>
+	
+	</robot>
+
+</scenario>

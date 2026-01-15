@@ -1,0 +1,4 @@
+.vscode/
+/stonefish_ws/build/
+/stonefish_ws/install/
+/stonefish_ws/log/

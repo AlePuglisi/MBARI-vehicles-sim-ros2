@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<scenario>
+
+	<robot name="mola_auv" fixed="false" self_collisions="false">
+
+		<base_link name="base_link" type="compound" physics="submerged">
+
+			<external_part name="Base" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="mola_auv/mesh/base.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="mola_auv/mesh/base_phy.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Polyethylene"/>
+				<look name="MOLA_base"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="Frame" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="mola_auv/mesh/frame.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="mola_auv/mesh/frame_phy.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Polycarbonate"/>
+				<look name="black"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="CameraDome" type="model" physics="submerged" buoyant="false">
+				<visual>
+					<mesh filename="mola_auv/mesh/dome.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</visual>
+				<physical>
+					<mesh filename="mola_auv/mesh/dome_phy.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				</physical>
+				<material name="Acrylic"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<internal_part name="Foam" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.11" height="0.6"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Foam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+			<internal_part name="FoamCylUL" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.025" height="0.6"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 -0.225 -0.2"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+			<internal_part name="FoamCylUR" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.025" height="0.6"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 0.225 -0.2"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+			<internal_part name="FoamCylDL" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.025" height="0.6"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 -0.225 0.2"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+			<internal_part name="FoamCylDR" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.025" height="0.6"/>
+				<origin rpy="0.0 1.57 0.0" xyz="0.0 0.225 0.2"/>
+				<material name="InternalFoam"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+			<internal_part name="BallastBack" type="cylinder" physics="submerged" buoyant="false">
+				<dimensions radius="0.11" height="0.03"/>
+				<origin rpy="0.0 1.57 0.0" xyz="-0.335 0.0 0.0"/>
+				<material name="Ballast"/>
+				<look name="transparent"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</internal_part> 
+
+		</base_link>
+
+		<link name="LightR" type="model" physics="submerged" buoyant="false">
+			<physical>
+				<mesh filename="mola_auv/mesh/lightR_phy.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="mola_auv/mesh/lightR.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.005 0.0 0.0"/>
+			</visual>
+			<material name="Polyethylene"/>
+			<look name="MOLA_lightR"/>
+		</link>
+
+		<joint name="Base_LightR" type="revolute">
+			<parent name="base_link"/>
+			<child name="LightR"/>
+			<origin xyz="0.32 0.225 -0.19" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="-${pi/2}" max="0.0"/>
+		</joint>
+
+		<link name="LightL" type="model" physics="submerged" buoyant="false">
+
+			<physical>
+				<mesh filename="mola_auv/mesh/lightL_phy.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="mola_auv/mesh/lightL.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.005 0.0 0.0"/>
+			</visual>
+			<material name="Polyethylene"/>
+			<look name="MOLA_lightR"/>
+		</link>
+
+		<joint name="Base_LightL" type="revolute">
+			<parent name="base_link"/>
+			<child name="LightL"/>
+			<origin xyz="0.32 -0.225 -0.19" rpy="0.0 0.0 0.0"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="0.0" max="${pi/2}"/>
+		</joint>
+
+		
+		<!--   THRUSTERS   -->
+
+		<!-- T1 -->
+		<actuator name="ThrusterLFU" type="thruster">
+			<origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="true">
+				<mesh filename="mola_auv/mesh/ccw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T2 -->
+		<actuator name="ThrusterLFD" type="thruster">
+			<origin rpy="0.0 ${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 0.105 "/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="true" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="false">
+				<mesh filename="mola_auv/mesh/cw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T3 -->
+		<actuator name="ThrusterRFU" type="thruster">
+			<origin rpy="0.0 -${45*pi/180} ${135*pi/180}" xyz="0.3 0.182 -0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="true" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="false">
+				<mesh filename="mola_auv/mesh/cw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T4 -->
+		<actuator name="ThrusterRFD" type="thruster">
+			<origin rpy="0.0 ${45*pi/180} ${135*pi/180}" xyz="0.3 0.182 0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="true">
+				<mesh filename="mola_auv/mesh/ccw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T5 -->
+		<actuator name="ThrusterLBU" type="thruster">
+			<origin rpy="0.0 ${45*pi/180} ${135*pi/180}" xyz="-0.3 -0.182 -0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="true">
+				<mesh filename="mola_auv/mesh/ccw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T6 -->
+		<actuator name="ThrusterLBD" type="thruster">
+			<origin rpy="0.0 -${45*pi/180} ${135*pi/180}" xyz="-0.3 -0.182 0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="true" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="false">
+				<mesh filename="mola_auv/mesh/cw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T7 -->
+		<actuator name="ThrusterRBU" type="thruster">
+			<origin rpy="0.0 ${45*pi/180} -${135*pi/180}" xyz="-0.3 0.182 -0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="true" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="false">
+				<mesh filename="mola_auv/mesh/cw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!-- T8 -->
+		<actuator name="ThrusterRBD" type="thruster">
+			<origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="-0.3 0.182 0.105"/>
+    		<specs max_setpoint="${3500.0/60.0*2.0*pi}" inverted_setpoint="false" normalized_setpoint="true"/>
+			<propeller diameter="0.08" right="true">
+				<mesh filename="mola_auv/mesh/ccw.obj" scale="1.17"/>
+				<material name="Neutral"/>
+				<look name="MOLA_propeller"/>
+			</propeller>
+		    <rotor_dynamics type="first_order">
+				<time_constant value="0.2"/>
+		    </rotor_dynamics>
+		    <thrust_model type="fluid_dynamics">
+				<thrust_coeff forward="0.08" reverse="0.11"/>
+				<torque_coeff value="0.015"/>
+		    </thrust_model>
+			<link name="base_link"/>
+		</actuator>
+
+		<!--   MOTORS   -->		
+		<actuator name="Servo_LightL" type="servo">
+			<joint name="Base_LightL"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+			<initial position="0.0"/>
+		</actuator>
+
+		<actuator name="Servo_LightR" type="servo">
+			<joint name="Base_LightR"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+			<initial position="0.0"/>
+		</actuator>
+
+
+		<!--   LIGHTS   -->		
+
+		<light name="Light_R">
+			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
+			<color temperature="5600.0"/>
+			<origin xyz="-0.01 -0.017 0.19" rpy="0.0 ${pi/2} 0.0"/>
+			<link name="LightR"/>
+			<ros_service topic="/mola_auv/lights/right"/>
+		</light>
+		<light name="Light_L">
+			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
+			<color temperature="5600.0"/>
+
+			<origin xyz="-0.01 0.017 0.19" rpy="0.0 ${pi/2}  0.0"/>
+			<link name="LightL"/>
+			<ros_service topic="/mola_auv/lights/left"/>
+		</light>
+
+
+		<!--   SENSORS   -->
+
+		<!--   GROUND TRUTH ODOMETRY   -->
+		<sensor name="Odometry" type="odometry" rate="10.0">
+			<link name="base_link"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<ros_publisher topic="/mola_auv/navigator/odometry"/>
+		</sensor>
+
+		<!--   Link Sensors -->
+
+		<sensor name="dvl" type="dvl" rate="5.0">
+			<link name="base_link"/>
+			<origin rpy="0.0 ${pi} 0.0" xyz="-0.26 0.0 0.162"/>
+			<specs beam_angle="22.5"/>
+			<range velocity="9.0 9.0 9.0" altitude_min="0.05" altitude_max="40.0"/>
+			<noise velocity="0.0015" altitude="0.001"/>
+			<visual filename="mola_auv/mesh/dvl.obj" scale="1.0" look="black"/>
+			<ros_publisher topic="/mola_auv/navigator/dvl" altitude_topic="/mola_auv/navigator/altitude"/>
+		</sensor>
+               
+		<!-- <sensor name="INS" rate="100.0" type="ins">
+			<output_frame rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<noise angular_velocity="0.00001745" linear_acceleration="0.00005"/>
+			<external_sensors dvl="dvl" gps="gps" pressure="pressure"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<link name="base_link"/>
+		    <ros_publisher topic="/mola_auv/navigator/ins"/>
+		</sensor> -->
+
+		<!-- <sensor name="GPS" type="gps" rate="1.0">
+			<link name="base_link"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0 0 -0.74"/>
+			<noise ned_position="0.5"/>
+			<ros_publisher topic="/mola_auv/navigator/gps"/>
+		</sensor> -->
+
+		<sensor name="IMU" rate="10.0" type="imu">
+			<link name="base_link"/>
+			<range angular_velocity="10.0 10.0 5.0" linear_acceleration="10.0"/>
+			<noise angle="0.1 0.1 0.5" angular_velocity="0.05" yaw_drift="0.001" linear_acceleration="0.1"/>
+			<history samples="1"/>
+			<origin xyz="0.1 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<ros_publisher topic="/mola_auv/navigator/imu"/>
+		</sensor>
+
+		<sensor name="Pressure" rate="1.0" type="pressure">
+			<link name="base_link"/>
+			<range pressure="10000.0"/>
+			<noise pressure="0.1"/>
+			<history samples="1"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<ros_publisher topic="/mola_auv/navigator/pressure"/>
+		</sensor>
+
+		<!--   Vision Sensors -->
+
+		<sensor name="camera" rate="10.0" type="camera">
+			<specs resolution_x="1200" resolution_y="800" horizontal_fov="90.0"/>
+			<origin xyz="0.45 0 0.0" rpy="1.57 0 1.57"/>
+			<link name="base_link"/>
+			<ros_publisher topic="/mola_auv/camera"/>
+		</sensor>
+
+		<sensor name="FLS" type="fls" rate="10.0">
+			<specs beams="512" bins="500" horizontal_fov="130.0" vertical_fov="20.0"/>
+			<settings range_min="0.5" range_max="20.0" gain="1.1"/>
+			<noise multiplicative="0.03" additive="0.05"/>
+			<display colormap="hot"/>
+			<!-- <origin xyz="0.3 0 0.182" rpy="1.308 0 1.57"/> -->
+			<origin xyz="0.3 0 0.182" rpy="${pi/2} 0 ${pi/2}"/>
+			<visual filename="mola_auv/mesh/sonar_oculus_rotated.obj" scale="1.0" look="sonar_oculus"/>
+			<link name="base_link"/>
+			<ros_publisher topic="/mola_auv/fls"/>
+		</sensor>
+
+		<!--   Robot Location   -->
+		<world_transform rpy="0.0 0.0 0.0" xyz="0.0 0 2.0"/>
+
+		<!--   ROS SUBSCRIBERS / PUBLISHER THRUST/FORCES   -->
+		<ros_subscriber thrusters="/mola_auv/controller/thruster_setpoints_sim" forces="/mola_auv/controller/thruster_manager/input_stamped"/>
+		<ros_publisher thrusters="/mola_auv/controller/thruster_state" forces="/mola_auv/controller/thruster_manager/output"/>
+		
+		<!--   ROS SERVO TOPICS  -->
+    	<ros_joint_subscriber joint_name="Base_LightL" topic="/mola_auv/servo/lightL" control_mode="position"/>
+   		<ros_joint_subscriber joint_name="Base_LightR" topic="/mola_auv/servo/lightR" control_mode="position"/>
+		
+		<!--   Enable Odometry  -->
+		<ros_base_link_transforms publish="true"/>
+	
+	</robot>
+
+</scenario>

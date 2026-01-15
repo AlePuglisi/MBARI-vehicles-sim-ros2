@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>stonefish_ros2</name>
+  <version>1.6.0</version>
+  <description>ROS2 interface for the Stonefish marine simulation library.</description>
+  <author email="patryk.cieslak@udg.edu">Patryk Cieslak</author>
+	<maintainer email="patryk.cieslak@udg.edu">Patryk Cieslak</maintainer>
+  <license>GPL-3.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  
+  <depend>rclcpp</depend>
+  <depend>ament_index_cpp</depend>
+  <depend>std_srvs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>pcl</depend>
+  <depend>pcl_conversions</depend>
+  <depend>image_transport</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
