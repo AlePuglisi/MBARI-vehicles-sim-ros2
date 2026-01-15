@@ -14,9 +14,10 @@ I started this project because of my interest in underwater robotics and fascina
 Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | 
 
 ### MOLA AUV
-
+<image width=356 heigth=263 src=https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/blob/main/assets/MOLA_sim.png> <image width=332 heigth=263 src=https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/blob/main/assets/MOLA.jpg>
+    
 ### ROV Doc Ricketts
-
+<image width=400 heigth=275 src=https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/blob/main/assets/Ricketts_sim.png> <image width=348 heigth=275 src=https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/blob/main/assets/Ricketts.jpg>
 
 ## Gazebo Simulation ros2
 Underwater World Simulation | ROV | ROS2 Jazzy | Gazebo Harmonic | 
