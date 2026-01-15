@@ -1,11 +1,34 @@
-# ROV-Ricketts-ros2
+# MBARI Vehicles Simulation with Stonefish and Gazebo + ROS2
 **Unofficial MBARI's ROV Simulation and Control Project** <br/>
+I started this project because of my interest in underwater robotics and fascination with the [MBARI](https://www.mbari.org/) Oceanographic Institute. <br/>
+
+## Implemented Simulations
+
+- [Stonefish Simulation ROS2](#stonefish-simulation-ros2) | Under development
+    - [MOLA AUV](#mola-auv)
+    - [ROV Doc Ricketts](#rov-doc-ricketts)  
+- [Gazebo Simulation ROS2](#gazebo-simulation-ros2) | Archived
+    - [ROV Doc Ricketts](#rov-doc-ricketts)
+
+## Stonefish Simulation ros2
+Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | 
+
+### MOLA AUV
+
+### ROV Doc Ricketts
+
+
+## Gazebo Simulation ros2
 Underwater World Simulation | ROV | ROS2 Jazzy | Gazebo Harmonic | 
 
+I'm no more updating and improving the simulation in Gazebo, since I switch to differenty simulators tailored to the underwater domain (such as stonefish). <br/>
+Even if this part of the project is "archived", It still contain some valuable information to set up your own Gazebo simulation for a robotics project. <br/>
+
+Moreover, from the moment in which I was working on this project (April 2025), Gazebo underwater sensors and plug-ins may have been upgraded ! 
+
+### ROV Doc Ricketts
 <image width=375 heigth=250 src=https://github.com/user-attachments/assets/5a26e743-ca25-4e6b-828f-766e30c5d696>
 <img width=375 heigth=250 src=https://github.com/user-attachments/assets/89e07d87-b08a-4938-88d9-c57e42595556>
-   
-I started this project because of my interest in underwater robotics and fascination with the [MBARI](https://www.mbari.org/) Oceanographic Institute. <br/>
 
 > [!IMPORTANT]
 > To visualize the documentation of the commands only, look at this [commands sheet readme](https://github.com/AlePuglisi/ROV-Ricketts-ros2/blob/main/COMMANDS-SHEET.md). 
@@ -125,9 +148,9 @@ then, move back to the workspace folder (before /src), and build your workspace.
 Now you are ready to test this project!<br/>
 (Remember that after building the workspace, you need to source your bashrc, so your overlay and underlay will be sourced, just run ``source ~/.bashrc``)
 
-## :point_right: Step 1. Set up The Simulation
+### :point_right: Step 1. Set up The Simulation
 
-## 1.1. Create ROV Ricketts URDF from Sketchfab Model
+### 1.1. Create ROV Ricketts URDF from Sketchfab Model
 - First I download [Doc Ricketts ROV](https://sketchfab.com/3d-models/doc-ricketts-rov-def365ad47894a06b5f0fb2876795bf9) model from Sketchfab, in ``fbx`` format.
 - Import it in Blender to create separate meshes (with texture) for each piece
 - Export each model as ``dae`` (COLLADA format)<br/>
@@ -154,7 +177,7 @@ ros2 launch rov_ricketts_description display.launch.py
 
 The next step is to model and attach the robotic arm to Doc Ricketts.<br/>
 
-##  1.2. Add ROV Manipulator to the URDF Model 
+###  1.2. Add ROV Manipulator to the URDF Model 
 The arm is defined as a single piece in the 3D model, three options are possible to derive the URDF model:
 - [ ] 1. Remodel it with simple cylinders and parallelepiped shapes, connected by revolute joints, directly in URDF.
 - [ ] 2. Create a new 3D model from scratch, with separate links, using the original arm as a reference
@@ -212,7 +235,7 @@ Brief **Joint actuation Demo**:mechanical_arm::
 
 Joint limits and dynamic joints/body properties (Inertia, Center of mass, etc..) will be defined in the next steps...
 
-## 1.3. Tune Model Inertia parameters
+### 1.3. Tune Model Inertia parameters
 Inertial parameters of are fundamental for setting up Gazebo simulation (see the official documentation [tutorial](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/URDF/Adding-Physical-and-Collision-Properties-to-a-URDF-Model.html)). <br/>
    - ``<origin>``: position of the CoM, with respect to link frame [m]
    - ``<mass>``: link mass [kg]
@@ -236,9 +259,9 @@ Furthermore, base ``<collision>`` is simplified to reduce simulation complexity,
 
 
 
-## 1.4. Add and Tune Buoyancy, fluid dynamic, thruster actuators, and ligths Gazebo sim plugins
+### 1.4. Add and Tune Buoyancy, fluid dynamic, thruster actuators, and ligths Gazebo sim plugins
 
-## 1.5. Set up an underwater World in Gazebo Harmonic
+### 1.5. Set up an underwater World in Gazebo Harmonic
 <img width=470 heigth=400 src=https://github.com/user-attachments/assets/0bf0a30f-8224-4e0a-95b1-83ac638adb4e>
 <img width=470 heigth=400 src=https://github.com/user-attachments/assets/031b6c89-4a83-423f-9603-b400da519277>
 
@@ -266,36 +289,12 @@ ros2 launch rov_ricketts_sim rov_sim.launch.py world:=~/ros2_ws/src/ROV-Ricketts
 
 
 
-## 1.6. Move ROV Ricketts in the Gazebo World
+### 1.6. Move ROV Ricketts in the Gazebo World
 
 I'm not yet a good ROV pilot!
 Adjustments on plugin parameters and a GUI or joypad teleoperation will be implemented to make Ricketts easy to operate.
 
 <image src=https://github.com/user-attachments/assets/d2cdf1e2-7910-4672-8660-4bd7bc90544e>
 
-
-
-## Step 2. Create Gazebo Deep Sea World from Sketchfab Models
-
-## 2.1. Import and Position desired environmental deep-sea elements
-
-## 2.2. Import deep-sea creatures meshes
-
-## 2.3. Define "Actor" Behaviours for animals
-
-## Step 3. Set Up Robot Teleoperation
-
-## 3.1. Map Desired motion in free space to thruster commands
-
-## 3.2. Implement Teleoperation Node
-
-## 3.3. Map Joystick or CLI commands to correct thrusters command
-
-## Step 4. Set Up Arm Teleoperation 
-
-## 4.1. Rely on the Teleoperation Node to include new arm-related commands
-
-## 4.2. Use Movit2 or ros2_control for Joint Control of the Arm 
-
-## Step 5 and so on ... 
-
+### ... Archived ... 
+I'm integrating with Stonefish the other features that I was planning to integrate in Gazebo...
