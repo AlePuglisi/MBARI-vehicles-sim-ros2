@@ -71,7 +71,7 @@ Feel free to [Pull Requests](https://docs.github.com/en/pull-requests/collaborat
 
 This emoji " :point_right: "Indicates the current step in development. 
 
-## Step 0. Install and Set up ROS2 + Used ROS Packages 
+### Step 0. Install and Set up ROS2 + Used ROS Packages 
 ### Prerequisite
 - Linux Ubuntu 24.04 
 - ROS2 Jazzy
