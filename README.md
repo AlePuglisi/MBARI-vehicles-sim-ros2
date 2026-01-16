@@ -11,7 +11,9 @@ I started this project because of my interest in underwater robotics and fascina
     - [ROV Doc Ricketts](#rov-doc-ricketts)
 
 ## Stonefish Simulation ros2
-Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | 
+**UNDER DEVELOPMENT** <br/>
+Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | <br/>
+
 
 ### MOLA AUV
 <image width=356 heigth=263 src=/assets/MOLA_sim.png> <image width=332 heigth=263 src=assets/MOLA.jpg>
@@ -20,7 +22,8 @@ Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish |
 <image width=400 heigth=275 src=/assets/Ricketts_sim.png> <image width=348 heigth=275 src=/assets/Ricketts.jpg>
 
 ## Gazebo Simulation ros2
-Underwater World Simulation | ROV | ROS2 Jazzy | Gazebo Harmonic | 
+**ARCHIVED**<br/>
+Underwater World Simulation | ROV | ROS2 Jazzy | Gazebo Harmonic | <br/>
 
 I'm no more updating and improving the simulation in Gazebo, since I switch to differenty simulators tailored to the underwater domain (such as stonefish). <br/>
 Even if this part of the project is "archived", It still contain some valuable information to set up your own Gazebo simulation for a robotics project. <br/>
