@@ -2,7 +2,7 @@
 **Unofficial MBARI's ROV Simulation and Control Project** <br/>
 I started this project because of my interest in underwater robotics and fascination with the [MBARI](https://www.mbari.org/) Oceanographic Institute. <br/>
 
-<image width=270 heigth=200 src=assets/images/MOLA_sim.png> <image width=290 heigth=200 src=assets/images/Ricketts_sim.png><img width=300 heigth=200 src=https://github.com/user-attachments/assets/89e07d87-b08a-4938-88d9-c57e42595556>
+<image width=200 heigth=150 src=assets/images/MOLA_sim.png> <image width=218 heigth=150 src=assets/images/Ricketts_sim.png><img width=225 heigth=150 src=https://github.com/user-attachments/assets/89e07d87-b08a-4938-88d9-c57e42595556>
 
 ## Implemented Simulations
 
