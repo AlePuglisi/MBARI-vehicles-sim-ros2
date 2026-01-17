@@ -11,7 +11,37 @@ I started this project because of my interest in underwater robotics and fascina
     - [ROV Doc Ricketts](#rov-doc-ricketts)
 
 ## Stonefish Simulation ros2
-Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | 
+**UNDER DEVELOPMENT** <br/>
+Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | <br/>
+
+**Stonefish** is a C++ library tailored for marine robotics simulations, with a lightweight rendering pipeline and realistic hydrodynamics.<br/>
+It provides ready to use underwater sensors and a realistic light simulation for the underwater environment (absorption, scattering, marine snow). Read more about stonefish in the [official documentation](https://stonefish.readthedocs.io/en/latest/). <br/>
+Moreover, wrapper for ROS1 and [ROS2](https://github.com/patrykcieslak/stonefish_ros2) are open source and easy to use!
+
+<details closed>
+<summary> How to build this workspace </summary>
+
+[stonefish_ws](https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/tree/main/stonefish_ws/src) depends on both **stonefish_ros2** and the **stonefish** library itself. 
+
+**Stonefish**: <br/>
+Differently from other realistic simulator developed for underwater robotics (such as [HoloOcean](https://robots.et.byu.edu/holoocean/) and [OceanSim](https://umfieldrobotics.github.io/OceanSim/)) it doesn't rely on any external gaming engine and the requirements are not prohibitive. <br/>
+Follow the instructions on the [official repo](https://github.com/patrykcieslak/stonefish?tab=readme-ov-file#installation) to install it. <br/>
+For a step-by-step installation of stonefish with some additional comments take a look at this [readme](). 
+
+**stonefish_ros2**: <br/>
+Once the Stonefish library has been installed, installing the ROS2 wrapper consist in the usual workspace build ! <br/>
+(More about stonefish_ros2 in the [official repo](https://github.com/patrykcieslak/stonefish_ros2)) <br/>
+
+In this repository, stonefish_ros2 is already in the workspace. By building the `stonefish_ws` you are building also the wrapper. 
+
+
+**IMPORTANT NOTE**:
+Make sure you have both the stonefish library and stonefish_ros2 with the same version.
+Both are active project and continue to evolve, possible compatibility issues may arise in case of different versions. 
+
+
+</details>
+
 
 ### MOLA AUV
 <image width=356 heigth=263 src=assets/MOLA_sim.png> <image width=332 heigth=263 src=assets/MOLA.jpg>
@@ -20,7 +50,8 @@ Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish |
 <image width=400 heigth=275 src=assets/Ricketts_sim.png> <image width=348 heigth=275 src=assets/Ricketts.jpg>
 
 ## Gazebo Simulation ros2
-Underwater World Simulation | ROV | ROS2 Jazzy | Gazebo Harmonic | 
+**ARCHIVED**<br/>
+Underwater World Simulation | ROV | ROS2 Jazzy | Gazebo Harmonic | <br/>
 
 I'm no more updating and improving the simulation in Gazebo, since I switch to differenty simulators tailored to the underwater domain (such as stonefish). <br/>
 Even if this part of the project is "archived", It still contain some valuable information to set up your own Gazebo simulation for a robotics project. <br/>
