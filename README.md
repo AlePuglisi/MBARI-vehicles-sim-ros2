@@ -18,6 +18,7 @@ Underwater World Simulation | ROV | ROS2 Jazzy | Stonefish | <br/>
 It provides ready to use underwater sensors and a realistic light simulation for the underwater environment (absorption, scattering, marine snow). Read more about stonefish in the [official documentation](https://stonefish.readthedocs.io/en/latest/). <br/>
 Moreover, wrapper for ROS1 and [ROS2](https://github.com/patrykcieslak/stonefish_ros2) are open source and easy to use!
 
+**NOTE**: For a basic implementation without additional thirdparty packages and libraries (e.g. orbslam3), refer to the [`basic` branch](https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/tree/basic). 
 <details closed>
 <summary> How to build this workspace </summary>
 
@@ -41,7 +42,8 @@ Both are active project and continue to evolve, possible compatibility issues ma
 
 For any issue don't hesitate to write me or open an Issue. <br/>
 Since this project will be a learning and experimenting repo, I may include external ROS2 packages or other library that may broke the build process. 
-I will take care of reporting those.
+I will take care of reporting those. <br/>
+For a basic implementation without additional thirdparty packages and libraries (e.g. orbslam3), refer to the [`basic` branch](https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/tree/basic)
 
 </details>
 
