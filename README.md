@@ -49,10 +49,10 @@ For a basic implementation without additional thirdparty packages and libraries 
 
 
 ### MOLA AUV
-<image width=356 heigth=263 src=assets/MOLA_sim.png> <image width=332 heigth=263 src=assets/MOLA.jpg>
+<image width=356 heigth=263 src=assets/images/MOLA_sim.png> <image width=332 heigth=263 src=assets/images/MOLA.jpg>
     
 ### ROV Doc Ricketts
-<image width=400 heigth=275 src=assets/Ricketts_sim.png> <image width=348 heigth=275 src=assets/Ricketts.jpg>
+<image width=400 heigth=275 src=assets/images/Ricketts_sim.png> <image width=348 heigth=275 src=assets/images/Ricketts.jpg>
 
 ## Gazebo Simulation ros2
 **ARCHIVED**<br/>
