@@ -39,6 +39,9 @@ In this repository, stonefish_ros2 is already in the workspace. By building the 
 Make sure you have both the stonefish library and stonefish_ros2 with the same version.
 Both are active project and continue to evolve, possible compatibility issues may arise in case of different versions. 
 
+For any issue don't hesitate to write me or open an Issue. <br/>
+Since this project will be a learning and experimenting repo, I may include external ROS2 packages or other library that may broke the build process. 
+I will take care of reporting those.
 
 </details>
 
