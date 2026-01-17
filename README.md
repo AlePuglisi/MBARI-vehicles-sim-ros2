@@ -26,7 +26,7 @@ Moreover, wrapper for ROS1 and [ROS2](https://github.com/patrykcieslak/stonefish
 **Stonefish**: <br/>
 Differently from other realistic simulator developed for underwater robotics (such as [HoloOcean](https://robots.et.byu.edu/holoocean/) and [OceanSim](https://umfieldrobotics.github.io/OceanSim/)) it doesn't rely on any external gaming engine and the requirements are not prohibitive. <br/>
 Follow the instructions on the [official repo](https://github.com/patrykcieslak/stonefish?tab=readme-ov-file#installation) to install it. <br/>
-For a step-by-step installation of stonefish with some additional comments take a look at this [readme](). 
+For a step-by-step installation of stonefish with some additional comments take a look at this [readme](https://github.com/AlePuglisi/MBARI-vehicles-sim-ros2/blob/main/INSTALLATION_TROUBLESHOOTING.md). 
 
 **stonefish_ros2**: <br/>
 Once the Stonefish library has been installed, installing the ROS2 wrapper consist in the usual workspace build ! <br/>
