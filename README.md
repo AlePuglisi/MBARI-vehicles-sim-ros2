@@ -11,6 +11,8 @@ I started this project because of my interest in underwater robotics and fascina
     - [ROV Doc Ricketts](#rov-doc-ricketts)  
 - [Gazebo Simulation ROS2](#gazebo-simulation-ros2) | Archived
     - [ROV Doc Ricketts](#rov-doc-ricketts)
+ 
+- [References](#references)
 
 ## Stonefish Simulation ros2
 **UNDER DEVELOPMENT** <br/>
@@ -337,3 +339,11 @@ Adjustments on plugin parameters and a GUI or joypad teleoperation will be imple
 
 ### ... Archived ... 
 I'm integrating with Stonefish the other features that I was planning to integrate in Gazebo...
+
+## References
+
+- M. Grimaldi, P. Cieslak, E. Ochoa, V. Bharti, H. Rajani, I. Carlucho, M. Koskinopoulou, Y. R. Petillot, N. Gracias, "Stonefish: Supporting Machine Learning Research in Marine Robotics", arXiv, feb. 2025, url: [https://arxiv.org/abs/2502.11887](https://arxiv.org/abs/2502.11887)
+
+- P. Cieslak, "Stonefish: An Advanced Open-Source Simulation Tool Designed for Marine Robotics, With a ROS Interface", Proceedings of MTS/IEEE OCEANS jun. 2019, doi: [10.1109/OCEANSE.2019.8867434](10.1109/OCEANSE.2019.8867434)
+
+- ...
