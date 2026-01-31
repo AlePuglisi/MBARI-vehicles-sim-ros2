@@ -33,7 +33,7 @@ def generate_launch_description():
                         FindPackageShare('mola_auv_sim'), 'data'
                     ]),
                     'scenario_desc': PathJoinSubstitution([
-                        FindPackageShare('mola_auv_sim'), 'scenarios', 'ocean.scn'
+                        FindPackageShare('mola_auv_sim'), 'scenarios', 'tank.scn'
                     ]),
                     'simulation_rate': '100.0',
                     'window_res_x': '1200',

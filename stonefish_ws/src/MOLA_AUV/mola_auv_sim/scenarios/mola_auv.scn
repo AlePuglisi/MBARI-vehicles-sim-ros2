@@ -402,7 +402,7 @@
 		</sensor>
 
 		<!--   Robot Location   -->
-		<world_transform rpy="0.0 0.0 0.0" xyz="0.0 0 2.0"/>
+		<world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 2.0"/>
 
 		<!--   ROS SUBSCRIBERS / PUBLISHER THRUST/FORCES   -->
 		<ros_subscriber thrusters="/mola_auv/controller/thruster_setpoints_sim" forces="/mola_auv/controller/thruster_manager/input_stamped"/>

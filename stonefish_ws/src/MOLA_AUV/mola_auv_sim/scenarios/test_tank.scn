@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<scenario>
+
+    <looks>
+        <!-- <look name="PileSub" gray="1.0" roughness="1.0" metalness="0.1" texture="wind_turbine_complex/texture/SubPile.png"
+																		normal_map="wind_turbine_complex/texture/SubPile_Normal.png"/> -->
+
+
+		<look name="Wall" rgb="0.78 0.75 0.65" roughness="1.0" metalness="0.1"/>
+		<look name="Alluminium" rgb="0.73 0.75 0.76" roughness="1.0" metalness="1.0"/>
+		<look name="Black" rgb="0.0 0.0 0.0" roughness="1.0" metalness="0.1"/>
+		<look name="Gray" rgb="0.5 0.5 0.5" roughness="1.0" metalness="0.1"/>
+
+    </looks>   
+
+	<static name="Pool" type="model">
+		<physical>
+			<mesh filename="test_tank/mesh/Pool.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Wall"/>
+		<world_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="WindowsUp" type="model">
+		<physical>
+			<mesh filename="test_tank/mesh/WindowsUp.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="WindowsDown" type="model">
+		<physical>
+			<mesh filename="test_tank/mesh/WindowsDown.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <static name="WindowsCyl" type="model">
+		<physical>
+			<mesh filename="test_tank/mesh/WindowsCyl.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Alluminium"/>
+		<world_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<static name="Floor" type="model">
+		<physical>
+			<mesh filename="test_tank/mesh/Floor.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Gray"/>
+		<world_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+
+</scenario>
