@@ -2,10 +2,9 @@
 <scenario>
 
     <looks>
-        <!-- <look name="PileSub" gray="1.0" roughness="1.0" metalness="0.1" texture="wind_turbine_complex/texture/SubPile.png"
-																		normal_map="wind_turbine_complex/texture/SubPile_Normal.png"/> -->
 
-
+        <look name="PoolTexture" gray="1.0" roughness="1.0" metalness="0.1" texture="test_tank/texture/PoolTexture.png"/>
+																		<!-- normal_map="wind_turbine_complex/texture/SubPile_Normal.png"/> -->
 		<look name="Wall" rgb="0.78 0.75 0.65" roughness="1.0" metalness="0.1"/>
 		<look name="Alluminium" rgb="0.73 0.75 0.76" roughness="1.0" metalness="1.0"/>
 		<look name="Black" rgb="0.0 0.0 0.0" roughness="1.0" metalness="0.1"/>
@@ -19,7 +18,7 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="Wall"/>
+		<look name="PoolTexture"/>
 		<world_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 	</static>
 
