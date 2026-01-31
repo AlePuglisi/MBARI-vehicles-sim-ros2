@@ -6,6 +6,7 @@ from sensor_msgs.msg import Joy
 from std_msgs.msg import Float64MultiArray
 from std_msgs.msg import Float64
 from math import pi
+
 import numpy as np
 from std_srvs.srv import SetBool
 
@@ -148,8 +149,16 @@ class WeightedJoystickController(Node):
         
         self.B = B
         
+        self.M = np.array([ [-1, -1, -1, -1, -1, -1, -1, -1],
+                            [-1, -1, 1, 1, 1, 1, -1, -1],
+                            [-1, 1, -1, 1, 1, -1, 1, -1],
+                            [1, -1, -1, 1, -1, 1, 1, -1],
+                            [1, -1, 1, -1, 1, -1, 1, -1],
+                            [-1, -1, 1, 1, -1, -1, 1, 1]])
+        self.M = self.M * 0.3
+
         # YOUR ACTUAL INERTIA VALUES (from the simulation)
-        mass = 29.637  # kg
+        mass = 28.273 # kg
         Ixx = 0.668  # Roll inertia (VERY LOW!)
         Iyy = 2.359  # Pitch inertia
         Izz = 2.478 # Yaw inertia
@@ -172,11 +181,15 @@ class WeightedJoystickController(Node):
         # Compute weighted pseudo-inverse: B_weighted^+ = B^T * W^2 * (B * B^T * W^2)^-1
         # Simpler form: (W*B)^+
         BW = W @ B
-        self.B_pinv = np.linalg.pinv(BW)
+
+        # self.B_pinv = np.linalg.pinv(BW)
+        self.B_pinv = np.linalg.pinv(self.M)
+    
 
         # self.B_pinv = np.linalg.pinv(B)
         self.get_logger().info(f'Allocation matrix shape: {B.shape}')
-        self.get_logger().info(f'Pseudo-inverse shape: {self.B_pinv.shape}')
+        self.get_logger().info(f'Allocation matrix: {B}')
+        # self.get_logger().info(f'Pseudo-inverse shape: {self.B_pinv.shape}')
 
         # Log the weighting ratios
         # self.get_logger().info(f'Weighting factors:')
@@ -257,12 +270,13 @@ class WeightedJoystickController(Node):
         command_vector = np.array([surge, sway, heave, roll, pitch, yaw])
         
         # Calculate thruster setpoints using weighted pseudo-inverse
-        thruster_setpoints = self.B_pinv @ command_vector
-        
-        # Normalize if needed
+        # thruster_setpoints = self.B_pinv @ command_vector
+        thruster_setpoints = self.M.transpose() @ command_vector
+
+
         max_thrust = np.max(np.abs(thruster_setpoints))
-        if max_thrust > 1.0:
-            thruster_setpoints =  thruster_setpoints / max_thrust
+        if max_thrust > 0.4:
+            thruster_setpoints =  thruster_setpoints / (max_thrust + 1.0)
         
         # Publish
         msg = Float64MultiArray()
