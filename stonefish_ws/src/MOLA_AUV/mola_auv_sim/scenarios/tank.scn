@@ -37,6 +37,8 @@
 
     <include file="$(find mola_auv_sim)/scenarios/test_tank.scn"/>
 
+    <include file="$(find mola_auv_sim)/scenarios/docking_station.scn"/>
+
     <!--   Inlcude Addiitonal world actuators/sensors (lights, cameras, etc) not attached to Robots  -->
 
     <!--   Inlcude Robots  -->

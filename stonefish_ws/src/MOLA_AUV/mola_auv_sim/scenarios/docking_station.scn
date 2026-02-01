@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<scenario>
+
+    <looks>
+
+		<look name="Black" rgb="0.0 0.0 0.0" roughness="1.0" metalness="0.1"/>
+		<look name="White" rgb="1.0 1.0 1.0" roughness="1.0" metalness="0.1"/>
+
+    </looks>   
+
+    <!--   Docking Station components  -->
+	<static name="DockingFrame" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/docking_station_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="2.0 0.0 1.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<static name="DockingMagnet" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/docking_station_magnet.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="2.0 0.0 1.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+	<static name="DockingMarkerBoard" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/docking_station_markerboard.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="2.0 0.0 1.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+    <!--   Docking Station (Base) Fiducial Markers  -->
+    <static name="MarkerFL" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0-0.7} ${0.0-0.4} ${1.0-0.2}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerFR" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0-0.7} ${0.0+0.4} ${1.0-0.2}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerBL" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0+0.7} ${0.0-0.4} ${1.0-0.2}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerBR" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0+0.7} ${0.0+0.4} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
+	</static>
+    <static name="MarkerRF" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0-0.4} ${0.0+0.7} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
+	</static>
+    <static name="MarkerRB" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0+0.4} ${0.0+0.7} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
+	</static>
+    <static name="MarkerLF" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0-0.4} ${0.0-0.7} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
+	</static>
+    <static name="MarkerLB" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="Black"/>
+		<world_transform xyz="${2.0+0.4} ${0.0-0.7} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
+	</static>
+
+    <!--   Docking Station (Board) Fiducial Markers  -->
+
+    <static name="MarkerF11" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.485} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF12" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.16} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF13" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.165} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF14" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.49} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF21" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.485} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF22" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.16} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF23" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.165} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+	</static>
+    <static name="MarkerF24" type="model">
+		<physical>
+			<mesh filename="docking_station/mesh/marker_frame.obj" scale="1.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="White"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.49} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+	</static>
+
+</scenario>
