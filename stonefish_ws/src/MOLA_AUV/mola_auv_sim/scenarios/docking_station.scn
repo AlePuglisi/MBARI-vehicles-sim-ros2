@@ -6,6 +6,17 @@
 		<look name="Black" rgb="0.0 0.0 0.0" roughness="1.0" metalness="0.1"/>
 		<look name="White" rgb="1.0 1.0 1.0" roughness="1.0" metalness="0.1"/>
 
+		<look name="tag36h11_ID103_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID103_24cm.png"/>
+		<look name="tag36h11_ID107_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID107_24cm.png"/>
+		<look name="tag36h11_ID70_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID70_24cm.png"/>
+		<look name="tag36h11_ID71_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID71_24cm.png"/>
+		<look name="tag36h11_ID72_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID72_24cm.png"/>
+		<look name="tag36h11_ID73_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID73_24cm.png"/>
+		<look name="tag36h11_ID82_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID82_24cm.png"/>
+		<look name="tag36h11_ID83_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID83_24cm.png"/>
+		<look name="tag36h11_ID84_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID84_24cm.png"/>
+		<look name="tag36h11_ID85_24cm" gray="1.0" roughness="1.0" texture="docking_station/texture/tag36h11_ID85_24cm.png"/>
+
     </looks>   
 
     <!--   Docking Station components  -->
@@ -74,7 +85,7 @@
 		</physical>
 		<material name="Neutral"/>
 		<look name="Black"/>
-		<world_transform xyz="${2.0+0.7} ${0.0+0.4} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
+		<world_transform xyz="${2.0+0.7} ${0.0+0.4} ${1.0-0.2}" rpy="0.0 0.0 0.0"/>
 	</static>
     <static name="MarkerRF" type="model">
 		<physical>
@@ -82,7 +93,7 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="Black"/>
+		<look name="tag36h11_ID103_24cm"/>
 		<world_transform xyz="${2.0-0.4} ${0.0+0.7} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
 	</static>
     <static name="MarkerRB" type="model">
@@ -91,7 +102,7 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="Black"/>
+		<look name="tag36h11_ID107_24cm"/>
 		<world_transform xyz="${2.0+0.4} ${0.0+0.7} ${1.0-0.2}" rpy="0.0 0.0 ${pi/2}"/>
 	</static>
     <static name="MarkerLF" type="model">
@@ -121,8 +132,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0-0.485} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID70_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.485} ${1.0+0.25}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF12" type="model">
 		<physical>
@@ -130,8 +141,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0-0.16} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID71_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.16} ${1.0+0.25}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF13" type="model">
 		<physical>
@@ -139,8 +150,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0+0.165} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID82_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.165} ${1.0+0.25}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF14" type="model">
 		<physical>
@@ -148,8 +159,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0+0.49} ${1.0+0.25}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID83_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.49} ${1.0+0.25}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF21" type="model">
 		<physical>
@@ -157,8 +168,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0-0.485} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID72_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.485} ${1.0+0.6}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF22" type="model">
 		<physical>
@@ -166,8 +177,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0-0.16} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID73_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0-0.16} ${1.0+0.6}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF23" type="model">
 		<physical>
@@ -175,8 +186,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0+0.165} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID84_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.165} ${1.0+0.6}" rpy="0.0 0.0 ${pi}"/>
 	</static>
     <static name="MarkerF24" type="model">
 		<physical>
@@ -184,8 +195,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
-		<world_transform xyz="${2.0+0.675} ${0.0+0.49} ${1.0+0.6}" rpy="0.0 0.0 0.0"/>
+		<look name="tag36h11_ID85_24cm"/>
+		<world_transform xyz="${2.0+0.675} ${0.0+0.49} ${1.0+0.6}" rpy="0.0 0.0 ${pi}"/>
 	</static>
 
 </scenario>
