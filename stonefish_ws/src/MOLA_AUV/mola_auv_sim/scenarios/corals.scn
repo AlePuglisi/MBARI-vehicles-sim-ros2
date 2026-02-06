@@ -10,6 +10,8 @@
                                                                         normal_map="corals/texture/coralsTree_normal.png"/>
         <look name="GiantClaim" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/giant_claim.png"/>
                                                                         <!-- normal_map="corals/texture/coralsTree_normal.png"/> -->
+        <look name="CoralFrame" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrame.png"/>
+        <look name="CoralFiducial0" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameFiducial0_37.png"/>
     </looks>   
 
 	<static name="CoralBrain_Brown01" type="model">
@@ -136,13 +138,22 @@
 		<world_transform xyz="3.0 3.0 7.8" rpy="0.0 0.0 0.0"/>
 	</static> -->
 
-	<!-- <static name="CoralRestoration01" type="model">
+	<static name="CoralRestoration01" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
+		<look name="CoralFrame"/>
+		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralRestoration01Fiducial" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame_fiducial.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralFiducial0"/>
 		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
 	</static>
 
@@ -152,7 +163,7 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
+		<look name="CoralFrame"/>
 		<world_transform xyz="8.0 8.0 8.1" rpy="0.0 0.0 0.0"/>
 	</static>
 
@@ -162,8 +173,8 @@
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="White"/>
+		<look name="CoralFrame"/>
 		<world_transform xyz="6.5 3.0 8.1" rpy="0.0 0.0 0.0"/>
-	</static> -->
+	</static>
 
 </scenario>

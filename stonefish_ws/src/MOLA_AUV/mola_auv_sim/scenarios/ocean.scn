@@ -47,13 +47,9 @@
 
     <static name="CalibChess14x10" type="model">
         <physical>
-            <mesh filename="calibration_marker/mesh/supportA4.obj" scale="1.0" convex="false"/>
+            <mesh filename="calibration_marker/mesh/supportA4.obj" scale="2.0" convex="false"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </physical>
-        <visual>
-            <mesh filename="calibration_marker/mesh/supportA4.obj" scale="1.0"/>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        </visual>
         <material name="Neutral"/>
         <look name="calibChess14x10"/>
         <world_transform xyz="2.0 0.0 2.0" rpy="0.0 0.0 0.0"/>
