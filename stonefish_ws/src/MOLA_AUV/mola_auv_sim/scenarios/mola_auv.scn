@@ -382,11 +382,32 @@
 
 		<!--   Vision Sensors -->
 
+		<!--   Forward Looking Camera -->
 		<sensor name="camera" rate="10.0" type="camera">
-			<specs resolution_x="1200" resolution_y="800" horizontal_fov="90.0"/>
+			<specs resolution_x="2448" resolution_y="2048" horizontal_fov="90.0"/>
 			<origin xyz="0.45 0 0.0" rpy="1.57 0 1.57"/>
 			<link name="base_link"/>
-			<ros_publisher topic="/mola_auv/camera"/>
+			<ros_publisher topic="/mola_auv/front_camera"/>
+		</sensor>
+
+		<!--   Bottom Looking Stereo Camera -->
+		<sensor name="camera" rate="10.0" type="camera">
+			<specs resolution_x="1280" resolution_y="800" horizontal_fov="70.0"/>
+			<origin xyz="0 -0.12 0.25" rpy="0.0 0.0 1.57"/>
+			<link name="base_link"/>
+			<ros_publisher topic="/mola_auv/stereoR_camera"/>
+		</sensor>
+		<sensor name="camera" rate="10.0" type="camera">
+			<specs resolution_x="1280" resolution_y="800" horizontal_fov="70.0"/>
+			<origin xyz="0 0.12 0.25" rpy="0.0 0.0 1.57"/>
+			<link name="base_link"/>
+			<ros_publisher topic="/mola_auv/stereoL_camera"/>
+		</sensor>
+		<sensor name="camera" rate="10.0" type="camera">
+			<specs resolution_x="1280" resolution_y="800" horizontal_fov="70.0"/>
+			<origin xyz="0 0 0.25" rpy="0.0 0.0 1.57"/>
+			<link name="base_link"/>
+			<ros_publisher topic="/mola_auv/bottom_camera"/>
 		</sensor>
 
 		<sensor name="FLS" type="fls" rate="10.0">

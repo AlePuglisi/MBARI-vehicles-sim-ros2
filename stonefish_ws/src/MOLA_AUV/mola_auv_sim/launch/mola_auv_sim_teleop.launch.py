@@ -33,7 +33,7 @@ def generate_launch_description():
                         FindPackageShare('mola_auv_sim'), 'data'
                     ]),
                     'scenario_desc': PathJoinSubstitution([
-                        FindPackageShare('mola_auv_sim'), 'scenarios', 'tank.scn'
+                        FindPackageShare('mola_auv_sim'), 'scenarios', 'ocean.scn'
                     ]),
                     'simulation_rate': '100.0',
                     'window_res_x': '1200',
@@ -98,7 +98,7 @@ def generate_launch_description():
             namespace='',
             executable='rviz2',
             name='rviz2',
-            arguments=['-d' + os.path.join(get_package_share_directory('mola_auv_sim'), 'cfg', 'mola_auv_sim.rviz')]
+            arguments=['-d' + os.path.join(get_package_share_directory('mola_auv_sim'), 'cfg', 'mola_auv_sim_stereo.rviz')]
         )
     
     return LaunchDescription([
