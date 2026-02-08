@@ -23,7 +23,7 @@ class ImageProcessing(Node):
         # Subscriptions
         self.subscription_thruster_state = self.create_subscription(
             Image,
-            '/mola_auv/camera/image_color',
+            '/mola_auv/front_camera/image_color',
             self.camera_image_callback,
             10
         )
@@ -31,7 +31,7 @@ class ImageProcessing(Node):
         self.camera_params = None
         self.subscription_camera_info = self.create_subscription(
             CameraInfo,
-            '/mola_auv/camera/camera_info',
+            '/mola_auv/front_camera/camera_info',
             self.camera_info_callback,
             10
         )
@@ -39,9 +39,16 @@ class ImageProcessing(Node):
         self._cv_bridge = CvBridge()
 
         # Tag size in meters
-        self.tag_size = 0.240 
+        self.tag_size = 0.160
 
-        apriltag_options = apriltag.DetectorOptions(families='tag36h11')
+        apriltag_options = apriltag.DetectorOptions(families='tag25h9', 
+                                                    border=1,
+                                                    nthreads=4,
+                                                    quad_decimate=2.0,        # Downsample by 2x (reduces contours)
+                                                    quad_blur=0.8,            # Apply blur to reduce noise
+                                                    refine_edges=True,
+                                                    debug=False) 
+        
         self.apriltag_detector = apriltag.Detector(apriltag_options)
 
 
@@ -70,8 +77,12 @@ class ImageProcessing(Node):
         except Exception as e: 
             self.get_logger().error(f"Error converting image: {e}")
             return
-
+        
+        # Downsample for detection
+        # scale_factor = 0.5
+        # cv_image = cv2.resize(cv_image, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_AREA)
         gray_img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+
         apriltag_results = self.apriltag_detector.detect(gray_img)
 
 
@@ -96,7 +107,7 @@ class ImageProcessing(Node):
             # draw the tag family on the image
             tagId = str(r.tag_id)
             cv2.putText(cv_image, tagId, (ptA[0], ptA[1] - 15),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 2.0, (0, 255, 0), 2)
             
             # Access pose estimation results
             # Compute pose if camera parameters are available
