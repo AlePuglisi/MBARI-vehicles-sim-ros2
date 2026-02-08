@@ -4,8 +4,6 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Global Options1
-        - /Status1
         - /TF1/Frames1
         - /Camera StereoL1/Topic1
       Splitter Ratio: 0.5
@@ -86,6 +84,8 @@ Visualization Manager:
         All Enabled: false
         mola_auv_base:
           Value: true
+        mola_auv_base_gt:
+          Value: true
         mola_auv_dome:
           Value: true
         mola_auv_frame:
@@ -123,13 +123,14 @@ Visualization Manager:
         world_ned:
           odom:
             mola_auv_base:
-              mola_auv_dome:
-                {}
-              mola_auv_frame:
-                {}
               mola_auv_lightL:
                 {}
               mola_auv_lightR:
+                {}
+            mola_auv_base_gt:
+              mola_auv_dome:
+                {}
+              mola_auv_frame:
                 {}
               mola_auv_propLBD:
                 {}
@@ -168,7 +169,7 @@ Visualization Manager:
         Value: true
       Enabled: true
       Keep: 3
-      Name: Odometry
+      Name: MOLA_Odometry
       Position Tolerance: 0.10000000149011612
       Shape:
         Alpha: 1
@@ -198,7 +199,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /robot_description
+        Value: /robot_description_estim
       Enabled: true
       Links:
         All Links Enabled: true
@@ -274,7 +275,98 @@ Visualization Manager:
       Mass Properties:
         Inertia: false
         Mass: false
-      Name: RobotModel
+      Name: MOLA_Estimated
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Alpha: 0.6000000238418579
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description_gt
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        mola_auv_base_gt:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_dome:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_lightL:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_lightR:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propLBD:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propLBU:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propLFD:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propLFU:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propRBD:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propRBU:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propRFD:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        mola_auv_propRFU:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: MOLA_GroundTruth
       TF Prefix: ""
       Update Interval: 0
       Value: true
@@ -381,25 +473,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 4.91784143447876
+      Distance: 2.7830023765563965
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.07047034800052643
-        Y: 0.1521691232919693
-        Z: 2.145386219024658
+        X: 0.7367961406707764
+        Y: 0.5556403994560242
+        Z: 1.7096444368362427
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: true
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4453989565372467
+      Pitch: 0.10039922595024109
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz_default_plugins)
-      Yaw: 0.6503971815109253
+      Yaw: 2.3835813999176025
     Saved: ~
 Window Geometry:
   Camera Downward:

@@ -20,6 +20,10 @@
         <color rgba="0.898 0.769 0.145 1.0"/>
     </material>
 
+    <material name="gray">
+        <color rgba="0.5 0.5 0.5 0.7"/>
+    </material>
+
     <material name="base">
         <texture filename="package://mola_auv_sim/data/mola_auv/texture/base.png"/>
     </material>
