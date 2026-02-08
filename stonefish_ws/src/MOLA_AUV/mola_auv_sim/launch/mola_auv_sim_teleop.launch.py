@@ -10,8 +10,11 @@ import xacro
 
 def generate_launch_description():
     description_path = get_package_share_directory('mola_auv_sim')
-    xacro_path = os.path.join(description_path, "urdf", "mola_auv.urdf.xacro")
-    robot_description = xacro.process_file(xacro_path).toxml()
+    xacro_path_gt = os.path.join(description_path, "urdf", "mola_auv_gt.urdf.xacro")
+    robot_description_gt = xacro.process_file(xacro_path_gt).toxml()
+
+    xacro_path_estim = os.path.join(description_path, "urdf", "mola_auv.urdf.xacro")
+    robot_description_estim = xacro.process_file(xacro_path_estim).toxml()
 
     # Declare launch arguments
     robot_name_arg = DeclareLaunchArgument(
@@ -68,13 +71,20 @@ def generate_launch_description():
             output='screen',
         )
     
+    static_tf_node_gt = Node(
+            package="tf2_ros",
+            executable="static_transform_publisher",
+            output="screen" ,
+            arguments=["0", "0", "0", "0", "0", "0", "odom", "mola_auv_base_gt"]
+        )  
+    
     static_tf_node = Node(
             package="tf2_ros",
             executable="static_transform_publisher",
             output="screen" ,
             arguments=["0", "0", "0", "0", "0", "0", "odom", "mola_auv_base"]
         )  
-    
+       
     mola_auv_joy_teleop_node = Node(
             package='mola_auv_control',
             executable='mola_auv_joy_teleop',
@@ -87,10 +97,30 @@ def generate_launch_description():
             output='screen'
         )
   
-    robot_state_publisher_node = Node(
+    # Ground truth robot state publisher with namespace
+    robot_state_publisher_gt_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description}]
+        name='robot_state_publisher_gt',
+        namespace='ground_truth',
+        parameters=[{'robot_description': robot_description_gt}],
+        remappings=[
+            ('/ground_truth/robot_description', '/robot_description_gt'),
+            ('/ground_truth/joint_states', '/joint_states')
+        ]
+    )   
+
+    # Estimated robot state publisher with namespace
+    robot_state_publisher_estim_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher_estim',
+        namespace='estimated',
+        parameters=[{'robot_description': robot_description_estim}],
+        remappings=[
+            ('/estimated/robot_description', '/robot_description_estim'),
+            ('/estimated/joint_states', '/joint_states')
+        ]
     )   
 
     rviz_node =  Node(
@@ -108,12 +138,17 @@ def generate_launch_description():
         odom2tf_node, 
         joy_node,
         mola_auv_joy_teleop_node,
+        static_tf_node_gt,
         static_tf_node,
         rviz_node, 
         mola_auv_joint_states_node,
         TimerAction(
-            period=5.0,
-            actions=[robot_state_publisher_node],
+            period=2.0,
+            actions=[robot_state_publisher_gt_node],
+        ),
+        TimerAction(
+            period=2.0,
+            actions=[robot_state_publisher_estim_node],
         )
     
         ])

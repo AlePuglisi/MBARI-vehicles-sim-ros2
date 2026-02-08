@@ -8,10 +8,14 @@
                                                                         normal_map="corals/texture/corals_normal.png"/>
         <look name="CoralTree" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/coralsTree.png"
                                                                         normal_map="corals/texture/coralsTree_normal.png"/>
-        <look name="GiantClaim" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/giant_claim.png"/>
-                                                                        <!-- normal_map="corals/texture/coralsTree_normal.png"/> -->
+
+        <look name="GiantClamInside" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/GiantClamInside.jpg"
+                                                                        normal_map="corals/texture/GiantClamInside_normal.jpg"/>
+        <look name="GiantClamOutside" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/GiantClamOutside.jpg"/>
+
         <look name="CoralFrame" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrame.png"/>
         <look name="CoralFiducial0" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameFiducial0_37.png"/>
+        <look name="CoralCoralsA" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameCoralsA.png"/>
     </looks>   
 
 	<static name="CoralBrain_Brown01" type="model">
@@ -138,6 +142,25 @@
 		<world_transform xyz="3.0 3.0 7.8" rpy="0.0 0.0 0.0"/>
 	</static> -->
 
+	<static name="GIantClam01_inside" type="model">
+		<physical>
+			<mesh filename="corals/mesh/giant_clam_inside.obj" scale="1.5" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="GiantClamInside"/>
+		<world_transform xyz="0.0 -2.0 8.3" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="GIantClam01_outside" type="model">
+		<physical>
+			<mesh filename="corals/mesh/giant_clam_outside.obj" scale="1.5" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="GiantClamOutside"/>
+		<world_transform xyz="0.0 -2.0 8.3" rpy="0.0 0.0 0.0"/>
+	</static>
+
 	<static name="CoralRestoration01" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
@@ -154,6 +177,15 @@
 		</physical>
 		<material name="Neutral"/>
 		<look name="CoralFiducial0"/>
+		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralRestoration01CoralsA" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame_coralsA.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralCoralsA"/>
 		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
 	</static>
 
