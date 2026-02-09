@@ -14,8 +14,16 @@
         <look name="GiantClamOutside" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/GiantClamOutside.jpg"/>
 
         <look name="CoralFrame" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrame.png"/>
-        <look name="CoralFiducial0" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameFiducial0_37.png"/>
+
+        <look name="CoralFiducialA" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameFiducial0_37.png"/>
         <look name="CoralCoralsA" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameCoralsA.png"/>
+
+        <look name="CoralFiducialB" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameFiducial0_37.png"/>
+        <look name="CoralCoralsAB" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameCoralsB.png"/>
+
+		<look name="CoralFiducialC" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameFiducial0_37.png"/>
+        <look name="CoralCoralsC" gray="1.0" roughness="1.0" metalness="0.0" texture="corals/texture/CoralFrameCoralsC.png"/>
+
     </looks>   
 
 	<static name="CoralBrain_Brown01" type="model">
@@ -161,7 +169,7 @@
 		<world_transform xyz="0.0 -2.0 8.3" rpy="0.0 0.0 0.0"/>
 	</static>
 
-	<static name="CoralRestoration01" type="model">
+	<static name="CoralRestoration_A" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -170,16 +178,16 @@
 		<look name="CoralFrame"/>
 		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
 	</static>
-	<static name="CoralRestoration01Fiducial" type="model">
+	<static name="CoralRestorationFiducial_A" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame_fiducial.obj" scale="2.0" convex="false"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
-		<look name="CoralFiducial0"/>
+		<look name="CoralFiducialA"/>
 		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
 	</static>
-	<static name="CoralRestoration01CoralsA" type="model">
+	<static name="CoralRestorationCorals_A" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame_coralsA.obj" scale="2.0" convex="false"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -189,7 +197,7 @@
 		<world_transform xyz="3.0 6.0 8.2" rpy="0.0 0.0 0.0"/>
 	</static>
 
-	<static name="CoralRestoration02" type="model">
+	<static name="CoralRestoration_B" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -198,14 +206,50 @@
 		<look name="CoralFrame"/>
 		<world_transform xyz="8.0 8.0 8.1" rpy="0.0 0.0 0.0"/>
 	</static>
+	<static name="CoralRestorationFiducial_B" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame_fiducial.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralFiducialA"/>
+		<world_transform xyz="8.0 8.0 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralRestoration01Corals_B" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame_coralsB.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralCoralsB"/>
+		<world_transform xyz="8.0 8.0 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
 
-	<static name="CoralRestoration03" type="model">
+	<static name="CoralRestorationC" type="model">
 		<physical>
 			<mesh filename="corals/mesh/coral_restoration_frame.obj" scale="2.0" convex="false"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</physical>
 		<material name="Neutral"/>
 		<look name="CoralFrame"/>
+		<world_transform xyz="6.5 3.0 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralRestorationFiducial_C" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame_fiducial.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralFiducialA"/>
+		<world_transform xyz="6.5 3.0 8.1" rpy="0.0 0.0 0.0"/>
+	</static>
+	<static name="CoralRestoration01Corals_C" type="model">
+		<physical>
+			<mesh filename="corals/mesh/coral_restoration_frame_coralsC.obj" scale="2.0" convex="false"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Neutral"/>
+		<look name="CoralCoralsC"/>
 		<world_transform xyz="6.5 3.0 8.1" rpy="0.0 0.0 0.0"/>
 	</static>
 
