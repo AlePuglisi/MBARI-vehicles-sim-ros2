@@ -26,7 +26,6 @@ setup(
         'console_scripts': [
             'odom2tf = ricketts_control.odom2tf:main',
             'ricketts_joint_states = ricketts_control.ricketts_joint_states:main',
-            'ricketts_joint_states_simple = ricketts_control.ricketts_joint_states_simple:main',
             'ricketts_joy_teleop = ricketts_control.ricketts_joy_teleop:main',
         ],
     },

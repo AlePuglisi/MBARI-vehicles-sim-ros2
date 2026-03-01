@@ -8,18 +8,18 @@
 		<ocean>
 			<water density="1031.0" jerlov="0.15"/>
 
-			<waves height="1.0"/>
+			<!-- <waves height="1.0"/> -->
 
 			<particles enabled="true"/>
 
-            <current type="uniform">
+            <!-- <current type="uniform">
                 <velocity xyz="10.0 10.0 0.0"/>
             </current>
             <current type="jet">
                 <center xyz="0.0 0.0 3.0"/>
                 <outlet radius="100.0"/>
                 <velocity xyz="0.0 2.0 0.0"/>
-            </current>
+            </current> -->
 		</ocean>
 
 		<atmosphere>

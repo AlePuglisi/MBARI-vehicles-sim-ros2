@@ -1,51 +1,40 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from nav_msgs.msg import Odometry
-from stonefish_ros2.msg import INS
-from scipy.spatial.transform import Rotation as R
-from tf2_ros import TransformBroadcaster
-from geometry_msgs.msg import TransformStamped
-from std_msgs.msg import Float64MultiArray
+
 from std_msgs.msg import Float64
 from sensor_msgs.msg import JointState
-from stonefish_ros2.msg import ThrusterState
+
 
 class RickettsJointStates(Node):
     def __init__(self):
         super().__init__('ricketts_joint_states')
-        
-        self.thruster_names = [
-            "base_propLFU", 
-            "base_propLFD",
-            "base_propRFU",
-            "base_propRFD",
-            "base_propLBU",
-            "base_propLBD",
-            "base_propRBU",
-            "base_propRBD"
-        ]
 
         # Initialize the TransformBroadcaster
         self.joint_publisher = self.create_publisher(JointState, 'joint_states', 10)
         
-        # Subscriptions
-        self.subscription_thruster_state = self.create_subscription(
-            ThrusterState,
-            '/ricketts/controller/thruster_state',
-            self.callback_thruster_state,
+        self.subscription_front_camera_link_state = self.create_subscription(
+            Float64,
+            'ricketts/servo/base_link_camera',
+            self.callback_base_link_camera_servo_state,
             10
         )
-        self.subscription_lightL_state = self.create_subscription(
+        self.subscription_front_camera_state = self.create_subscription(
             Float64,
-            '/ricketts/servo/lightL',
-            self.callback_lightL_servo_state,
+            'ricketts/servo/link_camera',
+            self.callback_link_camera_servo_state,
             10
         )
-        self.subscription_lightR_state = self.create_subscription(
+        self.subscription_stereo_camera_link_state = self.create_subscription(
             Float64,
-            '/ricketts/servo/lightR',
-            self.callback_lightR_servo_state,
+            'ricketts/servo/base_link_stereo',
+            self.callback_base_link_stereo_servo_state,
+            10
+        )
+        self.subscription_stereo_camera_state = self.create_subscription(
+            Float64,
+            'ricketts/servo/link_stereo',
+            self.callback_link_stereo_servo_state,
             10
         )
 
@@ -53,31 +42,25 @@ class RickettsJointStates(Node):
         self.joints_timer = self.create_timer(joints_timer_period, self.joint_update_callback)
 
         self.joint_names =  [
-            'base_lightL', 'base_lightR',
-            'base_propLFU', 'base_propLFD',
-            'base_propRFU', 'base_propRFD',
-            'base_propLBU', 'base_propLBD',
-            'base_propRBU', 'base_propRBD'
+            'frame_front_camera_link', 'front_camera_link_camera', 
+            'frame_stereo_camera_link', 'stereo_camera_link_stereo_camera'
         ]
 
         self.joint_position = [
-            0.0,   # base_lightL
-            0.0,  # base_lightR
-            0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  # all propellers
+            0.0,   # frame_front_camera_link
+            0.0,   # front_camera_link_camera
+            0.0,   # frame_stereo_camera_link
+            0.0    # stereo_camera_link_stereo_camera
         ]
+
         self.joint_velocity = [0.0 for i in range(len(self.joint_names))]
         self.joint_effort = [0.0 for i in range(len(self.joint_names))]
 
-        self.joint_states = {'base_propLFU': [0.0, 0.0, 0.0],
-                             'base_propLFD': [0.0, 0.0, 0.0],
-                             'base_propRFU': [0.0, 0.0, 0.0],
-                             'base_propRFD': [0.0, 0.0, 0.0],
-                             'base_propLBU': [0.0, 0.0, 0.0],
-                             'base_propLBD': [0.0, 0.0, 0.0],
-                             'base_propRBU': [0.0, 0.0, 0.0],
-                             'base_propRBD': [0.0, 0.0, 0.0],
-                             'base_lightL':  [0.0, 0.0, 0.0],
-                             'base_lightR':  [0.0, 0.0, 0.0],
+        self.joint_states = {
+                             'frame_front_camera_link':  [0.0, 0.0, 0.0],
+                             'front_camera_link_camera':  [0.0, 0.0, 0.0],
+                             'frame_stereo_camera_link':  [0.0, 0.0, 0.0],
+                             'stereo_camera_link_stereo_camera':  [0.0, 0.0, 0.0]
         }
     
 
@@ -91,28 +74,28 @@ class RickettsJointStates(Node):
 
         self.joint_publisher.publish(joint_msg)
 
-    def callback_thruster_state(self, msg:ThrusterState):
-        # Create TransformStamped message
-        joint_names = list(self.joint_states.keys())
-        joint_names = joint_names[:8]
-        for joint_name in joint_names:
-            self.joint_states[joint_name] = [0.0, 0.0, 0.0]
 
-
-
-    def callback_lightL_servo_state(self, msg:Float64):
-        joint_name = 'base_lightL'
+    def callback_base_link_camera_servo_state(self, msg:Float64):
+        joint_name = 'frame_front_camera_link'
         self.joint_states[joint_name] = [msg.data, 0.0, 0.0]
 
 
-    def callback_lightR_servo_state(self, msg:Float64):
-        joint_name = 'base_lightR'
+    def callback_link_camera_servo_state(self, msg:Float64):
+        joint_name = 'front_camera_link_camera'
         self.joint_states[joint_name] = [msg.data, 0.0, 0.0]
 
+    def callback_base_link_stereo_servo_state(self, msg:Float64):
+        joint_name = 'frame_stereo_camera_link'
+        self.joint_states[joint_name] = [msg.data, 0.0, 0.0]
+
+
+    def callback_link_stereo_servo_state(self, msg:Float64):
+        joint_name = 'stereo_camera_link_stereo_camera'
+        self.joint_states[joint_name] = [msg.data, 0.0, 0.0]
 
 def main(args=None):
     rclpy.init(args=args)
-    node = MolaJointStates()
+    node = RickettsJointStates()
     
     try:
         rclpy.spin(node)

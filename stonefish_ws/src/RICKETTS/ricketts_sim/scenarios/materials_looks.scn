@@ -83,14 +83,19 @@
 		<look name="manipulator" rgb="0.2 0.15 0.1" roughness="0.6" metalness="0.8"/>
         <look name="transparent" gray="1.0" roughness="0.0" metalness="0.0"/>
 		<look name="propeller" rgb="0.0 0.1 0.85" roughness="0.3" metalness="0.0"/>
+		<look name="ricketts_propeller" rgb="0.1 0.1 0.1" roughness="1.0" metalness="0.7"/>
 
 		<look name="dinner_plate_jelly" rgb="0.52 0.72 0.89" roughness="0.3"/>
 
 		<look name="ricketts_float" gray="1.0" roughness="1.0" texture="ricketts/texture/ricketts_float.png"/>
 		<look name="ricketts_frame" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_frame.png"/>
+		<look name="ricketts_frame_simple" rgb="0.1 0.1 0.1" roughness="1.0" metalness="0.7"/>
 		<look name="ricketts_ducts" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_ducts.png"/>
 		<look name="ricketts_equipment" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_equipment.png"/>
-		<look name="ricketts_propeller" rgb="0.62 0.45 0.36" roughness="0.0"/>
+
+		<look name="ricketts_front_camera" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_front_camera.png"/>
+		<look name="ricketts_stereo_camera" gray="1.0" roughness="0.1" texture="ricketts/texture/ricketts_stereo_camera.png"/>
+
     </looks>    
 
 </scenario>

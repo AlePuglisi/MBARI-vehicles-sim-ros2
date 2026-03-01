@@ -6,18 +6,20 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import Command
 from ament_index_python.packages import get_package_share_directory
+import xacro 
 
 def generate_launch_description():
-    # description_path = get_package_share_directory('ricketts_sim')
-    # xacro_path = os.path.join(description_path, "urdf", "ricketts.urdf.xacro")
-    # robot_description_command = Command(['xacro ', xacro_path])
+    description_path = get_package_share_directory('ricketts_sim')
+    xacro_path_estim = os.path.join(description_path, "urdf", "ricketts.urdf.xacro")
+    robot_description = xacro.process_file(xacro_path_estim).toxml()
 
-    # Declare launch arguments
-    # robot_name_arg = DeclareLaunchArgument(
-    #     'robot_name',
-    #     default_value='bluerov',
-    #     description='Name of the robot'
-    # )
+
+    #Declare launch arguments
+    robot_name_arg = DeclareLaunchArgument(
+        'robot_name',
+        default_value='ricketts',
+        description='Name of the robot'
+    )
 
     # Group action with namespace
     namespace_action = GroupAction(
@@ -43,18 +45,18 @@ def generate_launch_description():
         ]
     )
 
-    # odom2tf_node = Node(
-    #         package='bluerov2_control',
-    #         executable='odom2tf',
-    #         output='screen',
-    #     )
+    odom2tf_node = Node(
+            package='ricketts_control',
+            executable='odom2tf',
+            output='screen',
+        )
     
-    # static_tf_node = Node(
-    #         package="tf2_ros",
-    #         executable="static_transform_publisher",
-    #         output="screen" ,
-    #         arguments=["0", "0", "0", "-1.57", "0", "-1.57", "odom", "base_visual"]
-    #     )  
+    static_tf_node = Node(
+            package="tf2_ros",
+            executable="static_transform_publisher",
+            output="screen" ,
+            arguments=["0", "0", "0", "0.0", "0", "0.0", "odom", "ricketts_frame"]
+        )  
     
     joy_node = Node(
             package='joy',
@@ -68,33 +70,46 @@ def generate_launch_description():
             output='screen'
         )
     
-    # robot_state_publisher_node = Node(
-    #     package='robot_state_publisher',
-    #     executable='robot_state_publisher',
-    #     parameters=[{'robot_description': robot_description_command}]
-    # )   
+    robot_state_publisher_gt_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher_gt',
+        namespace='ground_truth',
+        parameters=[{'robot_description': robot_description}],
+        remappings=[
+            ('/ground_truth/robot_description', '/robot_description_gt'),
+            ('/ground_truth/joint_states', '/joint_states')
+        ]
+    )   
+
+    ricketts_joint_states_node = Node(
+            package='ricketts_control',
+            executable='ricketts_joint_states',
+            output='screen'
+        )
 
     rviz_node =  Node(
             package='rviz2',
             namespace='',
             executable='rviz2',
             name='rviz2',
-            # arguments=['-d' + os.path.join(get_package_share_directory('ricketts_sim'), 'cfg', 'bluerriov2_rviz.rviz')]
+            arguments=['-d' + os.path.join(get_package_share_directory('ricketts_sim'), 'cfg', 'ricketts.rviz')]
         )
     
     return LaunchDescription([
-        # robot_name_arg,
+        robot_name_arg,
         namespace_action,
 
-        #odom2tf_node, 
+        odom2tf_node, 
         joy_node,
         ricketts_joy_teleop_node,
-        # static_tf_node,
-        # rviz_node, 
+        static_tf_node,
+        rviz_node, 
+        ricketts_joint_states_node,
 
-        # TimerAction(
-        #     period=5.0,
-        #     actions=[robot_state_publisher_node],
-        # )
+        TimerAction(
+            period=5.0,
+            actions=[robot_state_publisher_gt_node],
+        )
     
         ])

@@ -30,7 +30,7 @@
 					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 				</physical>
 				<material name="Polycarbonate"/>
-				<look name="ricketts_frame"/>
+				<look name="ricketts_frame_simple"/>
 				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</external_part>
 
@@ -109,31 +109,32 @@
 		<!--   LINKS  -->
 
 		<!--   Front Camera   -->
-		<!-- <joint name="Base_FrontCameraLink" type="revolute">
+		<joint name="Base_FrontCameraLink" type="revolute">
 			<parent name="Base"/>
 			<child name="FrontCameraLink"/>
-			<origin xyz="1.17096  0.0 -0.4214" rpy="0.0 0.0 0.0"/>
-			<axis xyz="1.0 0.0 0.0"/>
+			<!-- <origin xyz="1.17096  0.0 -0.4214" rpy="0.0 0.0 0.0"/> -->
+			<origin xyz="1.441  0.0 -0.4254" rpy="0.0 0.0 0.0"/>
+			<axis xyz="0.0 0.0 1.0"/>
 			<limits min="-${pi/2}" max="${pi/2}"/>
 		</joint>
 		<link name="FrontCameraLink" type="model" physics="submerged" buoyant="true">
 			<visual>
-				<mesh filename="ricketts/mesh/ricketts_front_camera_link.obj" scale="1.0"/>
+				<mesh filename="ricketts/mesh/ricketts_base_to_camera_link.obj" scale="1.0"/>
 				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</visual>
 			<physical>
-				<mesh filename="ricketts/mesh/ricketts_front_camera_link_phy.obj" scale="1.0"/>
+				<mesh filename="ricketts/mesh/ricketts_base_to_camera_link.obj" scale="1.0"/>
 				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</physical>
 			<material name="Acrylic"/>
 			<look name="black"/>
 		</link>
 		<joint name="FrontCameraLink_FrontCamera" type="revolute">
-			<parent name="Base"/>
-			<child name="FrontCameraLink"/>
-			<origin xyz="0.0 0.0 ${-0.4214 + 0.18645}" rpy="0.0 0.0 0.0"/>
-			<axis xyz="1.0 0.0 0.0"/>
-			<limits min="-${pi/2}" max="0.0"/>
+			<parent name="FrontCameraLink"/>
+			<child name="FrontCamera"/>
+			<origin xyz="0.0 0.0 0.23495" rpy="0.0 0.0 0.0"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-${pi/2}" max="${pi/2}"/>
 		</joint>
 		<link name="FrontCamera" type="model" physics="submerged" buoyant="true">
 			<visual>
@@ -145,36 +146,36 @@
 				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</physical>
 			<material name="Acrylic"/>
-			<look name="gray"/>
-		</link> -->
+			<look name="ricketts_front_camera"/>
+		</link>
 
 
 		<!--   Stereo Camera   -->
-		<!-- <joint name="Base_StereoCameraLink" type="revolute">
+		<joint name="Base_StereoCameraLink" type="revolute">
 			<parent name="Base"/>
 			<child name="StereoCameraLink"/>
-			<origin xyz="0.32 0.225 -0.19" rpy="0.0 0.0 0.0"/>
-			<axis xyz="1.0 0.0 0.0"/>
-			<limits min="-${pi/2}" max="0.0"/>
+			<origin xyz="1.59918 0.0 -0.949676" rpy="0.0 0.0 0.0"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limits min="-${pi/2}" max="${pi/2}"/>
 		</joint>
 		<link name="StereoCameraLink" type="model" physics="submerged" buoyant="true">
 			<visual>
-				<mesh filename="ricketts/mesh/ricketts_stereo_camera_link.obj" scale="1.0"/>
+				<mesh filename="ricketts/mesh/ricketts_base_to_camera_link.obj" scale="1.0"/>
 				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</visual>
 			<physical>
-				<mesh filename="ricketts/mesh/ricketts_stereo_camera_link_phy.obj" scale="1.0"/>
+				<mesh filename="ricketts/mesh/ricketts_base_to_camera_link.obj" scale="1.0"/>
 				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</physical>
 			<material name="Acrylic"/>
-			<look name="transparent"/>
+			<look name="black"/>
 		</link>
 		<joint name="StereoLink_StereoCamera" type="revolute">
 			<parent name="StereoCameraLink"/>
 			<child name="StereoCamera"/>
-			<origin xyz="0.32 0.225 -0.19" rpy="0.0 0.0 0.0"/>
-			<axis xyz="1.0 0.0 0.0"/>
-			<limits min="-${pi/2}" max="0.0"/>
+			<origin xyz="0.0 0.0 0.23495" rpy="0.0 0.0 0.0"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-${pi/2}" max="${pi/2}"/>
 		</joint>
 		<link name="StereoCamera" type="model" physics="submerged" buoyant="true">
 			<visual>
@@ -186,8 +187,8 @@
 				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
 			</physical>
 			<material name="Acrylic"/>
-			<look name="transparent"/>
-		</link> -->
+			<look name="ricketts_stereo_camera"/>
+		</link>
 
 		<!--   ARM LINKS  -->
 		
@@ -326,37 +327,62 @@
 			<link name="Base"/>
 		</actuator>
 
-		<!--   MOTORS   -->		
-		<!-- <actuator name="Servo_LightL" type="servo">
-			<joint name="Base_LightL"/>
-			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+		<!--   CAMERA PAN-TILTING MOTORS   -->		
+		<actuator name="Servo_Base_FrontCameraLink" type="servo">
+			<joint name="Base_FrontCameraLink"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.3"/>
 			<initial position="0.0"/>
 		</actuator>
 
-		<actuator name="Servo_LightR" type="servo">
-			<joint name="Base_LightR"/>
-			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+		<actuator name="Servo_FrontCameraLink_FrontCamera" type="servo">
+			<joint name="FrontCameraLink_FrontCamera"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.3"/>
 			<initial position="0.0"/>
-		</actuator> -->
+		</actuator>
+
+		<actuator name="Servo_Base_StereoCameraLink" type="servo">
+			<joint name="Base_StereoCameraLink"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.3"/>
+			<initial position="0.0"/>
+		</actuator>
+
+		<actuator name="Servo_StereoLink_StereoCamera" type="servo">
+			<joint name="StereoLink_StereoCamera"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.3"/>
+			<initial position="0.0"/>
+		</actuator>
 
 
 		<!--   LIGHTS   -->		
 
-		<!-- <light name="Light_R">
+		<light name="Light_FLU">
 			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
 			<color temperature="5600.0"/>
-			<origin xyz="-0.01 -0.017 0.19" rpy="0.0 ${pi/2} 0.0"/>
-			<link name="LightR"/>
-			<ros_service topic="/ricketts/lights/right"/>
+			<origin xyz="1.87154 -0.625535 -0.997991" rpy="0.0 ${pi/2-pi/12} 0.0"/>
+			<link name="Base"/>
+			<ros_service topic="/ricketts/lights/LightFLU"/>
 		</light>
-		<light name="Light_L">
+		<light name="Light_FLD">
 			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
 			<color temperature="5600.0"/>
-
-			<origin xyz="-0.01 0.017 0.19" rpy="0.0 ${pi/2}  0.0"/>
-			<link name="LightL"/>
-			<ros_service topic="/ricketts/lights/left"/>
-		</light> -->
+			<origin xyz="1.92022 -0.754966 -0.778668" rpy="0.0 ${pi/2-pi/12} 0.0"/>
+			<link name="Base"/>
+			<ros_service topic="/ricketts/lights/LightFLD"/>
+		</light>
+		<light name="Light_FRU">
+			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
+			<color temperature="5600.0"/>
+			<origin xyz="1.87074 0.624561 -0.996415" rpy="0.0 ${pi/2-pi/12} 0.0"/>
+			<link name="Base"/>
+			<ros_service topic="/ricketts/lights/LightFRU"/>
+		</light>
+		<light name="Light_FRD">
+			<specs radius="0.01" cone_angle="40.0" illuminance="8500.0"/>
+			<color temperature="5600.0"/>
+			<origin xyz="1.88989 0.75297 -0.724821" rpy="0.0 ${pi/6} 0.0"/>
+			<link name="Base"/>
+			<ros_service topic="/ricketts/lights/LightFRD"/>
+		</light>
 
 
 		<!--   SENSORS   -->
@@ -410,12 +436,25 @@
 			<ros_publisher topic="/bluerov/multibeam_link/scan" pcl_topic="/bluerov/multibeam_link/pcd"/>
 		</sensor> -->
 		
-		<!-- <sensor name="camera" rate="10.0" type="camera">
+		<sensor name="front_camera" rate="10.0" type="camera">
 			<specs resolution_x="1200" resolution_y="800" horizontal_fov="90.0"/>
-			<origin xyz="0.2 0 -0.03" rpy="1.57 0 1.57"/>
+			<origin xyz="0.337394 0 0.2049" rpy="1.57 0 1.57"/>
 			<link name="FrontCamera"/>
-			<ros_publisher topic="/ricketts/camera"/>
-		</sensor> -->
+			<ros_publisher topic="/ricketts/front_camera"/>
+		</sensor>
+
+		<sensor name="stereo_camera_right" rate="10.0" type="camera">
+			<specs resolution_x="1200" resolution_y="800" horizontal_fov="90.0"/>
+			<origin xyz="0.159638 0.07439 0.136525" rpy="1.57 0 1.57"/>
+			<link name="StereoCamera"/>
+			<ros_publisher topic="/ricketts/stereo_camera_right"/>
+		</sensor>
+		<sensor name="stereo_camera_left" rate="10.0" type="camera">
+			<specs resolution_x="1200" resolution_y="800" horizontal_fov="90.0"/>
+			<origin xyz="0.159638 -0.07439 0.136525" rpy="1.57 0 1.57"/>
+			<link name="StereoCamera"/>
+			<ros_publisher topic="/ricketts/stereo_camera_left"/>
+		</sensor>
 			
 		<sensor name="FLS" type="fls" rate="10.0">
 			<specs beams="512" bins="500" horizontal_fov="130.0" vertical_fov="20.0"/>
@@ -433,9 +472,13 @@
 		<ros_subscriber thrusters="/ricketts/controller/thruster_setpoints_sim" forces="/ricketts/controller/thruster_manager/input_stamped"/>
 		<ros_publisher thrusters="/ricketts/controller/thruster_state" forces="/ricketts/controller/thruster_manager/output"/>
 
-    	<!-- <ros_joint_subscriber joint_name="Base_LightL" topic="/ricketts/servo/lightL" control_mode="position"/>
-   		<ros_joint_subscriber joint_name="Base_LightR" topic="/ricketts/servo/lightR" control_mode="position"/> -->
+    	<ros_joint_subscriber joint_name="Base_FrontCameraLink" topic="/ricketts/servo/base_link_camera" control_mode="position"/>
+   		<ros_joint_subscriber joint_name="FrontCameraLink_FrontCamera" topic="/ricketts/servo/link_camera" control_mode="position"/>
 
+    	<ros_joint_subscriber joint_name="Base_StereoCameraLink" topic="/ricketts/servo/base_link_stereo" control_mode="position"/>
+   		<ros_joint_subscriber joint_name="StereoLink_StereoCamera" topic="/ricketts/servo/link_stereo" control_mode="position"/>
+		
+		<!--   Enable Odometry  -->
 		<ros_base_link_transforms publish="true"/>
 	
 	</robot>

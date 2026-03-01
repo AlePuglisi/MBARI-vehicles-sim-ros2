@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <material name="blue">
+        <color rgba="0 0.3 0.8 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="blue_propeller">
+        <color rgba="0 0.1 0.85 1"/>
+    </material>
+
+    <material name="glass">
+        <color rgba="1.0 1.0 1.0 0.5"/>
+    </material>
+
+    <material name="yellow">
+        <color rgba="0.898 0.769 0.145 1.0"/>
+    </material>
+
+    <material name="gray">
+        <color rgba="0.5 0.5 0.5 0.7"/>
+    </material>
+
+    <material name="propeller">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+    </material>
+
+    <material name="ricketts_frame">
+        <color rgba="0.2 0.2 0.2 1.0"/>
+    </material>
+
+    <material name="ricketts_ducts">
+        <color rgba="0.898 0.769 0.145 1.0"/>
+    </material>
+
+    <material name="ricketts_equipments">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+    </material>
+
+    <material name="ricketts_float">
+        <texture filename="package://ricketts_sim/data/ricketts/texture/ricketts_float.png"/>
+    </material>
+    <material name="ricketts_front_camera">
+        <texture filename="package://ricketts_sim/data/ricketts/texture/ricketts_front_camera.png"/>
+    </material>
+    <material name="ricketts_stereo_camera">
+        <texture filename="package://ricketts_sim/data/ricketts/texture/ricketts_stereo_camera.png"/>
+    </material>
+
+</robot>

@@ -295,13 +295,13 @@
 		<!--   MOTORS   -->		
 		<actuator name="Servo_LightL" type="servo">
 			<joint name="Base_LightL"/>
-			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.25"/>
 			<initial position="0.0"/>
 		</actuator>
 
 		<actuator name="Servo_LightR" type="servo">
 			<joint name="Base_LightR"/>
-			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.1"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="10.0" max_velocity="0.25"/>
 			<initial position="0.0"/>
 		</actuator>
 

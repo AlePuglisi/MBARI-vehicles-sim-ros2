@@ -25,24 +25,43 @@ class WeightedJoystickController(Node):
 
         self.ricketts_camera_link_servo_pub = self.create_publisher(
             Float64, 
-            '/ricketts/servo/camera_link', 
+            '/ricketts/servo/base_link_camera', 
             10
         )
         self.ricketts_camera_servo_pub = self.create_publisher(
             Float64, 
-            '/ricketts/servo/camera', 
+            '/ricketts/servo/link_camera', 
             10
         )
 
-        # self.light_switch_cli = self.create_client(SetBool, '/ricketts/lights')
+        self.ricketts_stereo_link_servo_pub = self.create_publisher(
+            Float64, 
+            '/ricketts/servo/base_link_stereo', 
+            10
+        )
+        self.ricketts_stereo_camera_servo_pub = self.create_publisher(
+            Float64, 
+            '/ricketts/servo/link_stereo', 
+            10
+        )
 
-        # # Wait for services to be available
-        # while not self.light_switch_cli.wait_for_service(timeout_sec=1.0):
-        #     self.get_logger().info('Waiting for left light service...')
 
+        self.light_switch_FLU_cli = self.create_client(SetBool, '/ricketts/lights/LightFLU')
+        self.light_switch_FLD_cli = self.create_client(SetBool, '/ricketts/lights/LightFLD')
+        self.light_switch_FRU_cli = self.create_client(SetBool, '/ricketts/lights/LightFRU')
+        self.light_switch_FRD_cli = self.create_client(SetBool, '/ricketts/lights/LightFRD')
 
+        # Wait for services to be available
+        while not self.light_switch_FLU_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Waiting for FLU light service...')
+        while not self.light_switch_FLD_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Waiting for FLD light service...')
+        while not self.light_switch_FRU_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Waiting for FRU light service...')
+        while not self.light_switch_FRD_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Waiting for FRD light service...')
         
-        self.get_logger().info('Both light services are available')
+        self.get_logger().info('All lights services are available')
 
         # Track light state for toggling
         self.lights_on = False
@@ -86,7 +105,10 @@ class WeightedJoystickController(Node):
 
         self.deadzone = 0.05
         
-        self.servo_state = 0.0
+        self.servo_camera_link_state = 0.0
+        self.servo_camera_state = 0.0
+        self.servo_stereo_link_state = 0.0
+        self.servo_stereo_state = 0.0
 
         # Build allocation matrix and compute weighted pseudo-inverse
         self.build_allocation_matrix()
@@ -145,7 +167,7 @@ class WeightedJoystickController(Node):
         return sign * (abs(value) - self.deadzone) / (1.0 - self.deadzone)
 
     def toggle_lights(self):
-        """Toggle lights on/off by calling both service clients"""
+        """Toggle lights on/off by calling all service clients"""
         # Toggle state
         self.lights_on = not self.lights_on
         
@@ -154,27 +176,20 @@ class WeightedJoystickController(Node):
         request.data = self.lights_on
         
         # Call left light service asynchronously
-        future_left = self.lightL_switch_cli.call_async(request)
-        future_left.add_done_callback(self.light_left_callback)
+        future_light_FLU = self.light_switch_FLU_cli.call_async(request)
+        future_light_FLU.add_done_callback(self.light_callback)
+        future_light_FLD = self.light_switch_FLD_cli.call_async(request)
+        future_light_FLD.add_done_callback(self.light_callback)
+        future_light_FRU = self.light_switch_FRU_cli.call_async(request)
+        future_light_FRU.add_done_callback(self.light_callback)
+        future_light_FRD = self.light_switch_FRD_cli.call_async(request)
+        future_light_FRD.add_done_callback(self.light_callback)
         
-        # Call right light service asynchronously
-        future_right = self.lightR_switch_cli.call_async(request)
-        future_right.add_done_callback(self.light_right_callback)
         
         self.get_logger().info(f'Toggling lights {"ON" if self.lights_on else "OFF"}')
 
-    def light_left_callback(self, future):
-        """Callback for left light service response"""
-        try:
-            response = future.result()
-            if response.success:
-                self.get_logger().info(f'Left light: {response.message}')
-            else:
-                self.get_logger().warn(f'Left light failed: {response.message}')
-        except Exception as e:
-            self.get_logger().error(f'Left light service call failed: {str(e)}')
 
-    def light_right_callback(self, future):
+    def light_callback(self, future):
         """Callback for right light service response"""
         try:
             response = future.result()
@@ -213,29 +228,69 @@ class WeightedJoystickController(Node):
         msg.data = thruster_setpoints.tolist()
         self.rov_control_pub.publish(msg)
         
-        if buttons[self.buttons_index_["R1"]] == 1:
-            self.get_logger().info("R1 pressed")
+        # Front Monocular Camera
+        if axes[self.axes_index_["arrow_LR"]] == -1 and buttons[self.buttons_index_["options"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
             msg = Float64()
-            if self.servo_state < pi/2:
-                self.servo_state += 0.05
-            msg.data = self.servo_state
-            self.mola_lightL_servo_pub.publish(msg)
+            if self.servo_camera_link_state < pi/2:
+                self.servo_camera_link_state += 0.025
+            msg.data = self.servo_camera_link_state
+            self.ricketts_camera_link_servo_pub.publish(msg)
+        if axes[self.axes_index_["arrow_LR"]] == 1 and buttons[self.buttons_index_["options"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_camera_link_state > -pi/2:
+                self.servo_camera_link_state -= 0.025
+            msg.data = self.servo_camera_link_state
+            self.ricketts_camera_link_servo_pub.publish(msg)
+        if axes[self.axes_index_["arrow_UD"]] == 1 and buttons[self.buttons_index_["options"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_camera_state < pi/2:
+                self.servo_camera_state += 0.025
+            msg.data = self.servo_camera_state
+            self.ricketts_camera_servo_pub.publish(msg)
+        if axes[self.axes_index_["arrow_UD"]] == -1 and buttons[self.buttons_index_["options"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_camera_state > -pi/2:
+                self.servo_camera_state -= 0.025
+            msg.data = self.servo_camera_state
+            self.ricketts_camera_servo_pub.publish(msg)
+        
+        # Front Stereo Camera
+        if axes[self.axes_index_["arrow_LR"]] == -1 and buttons[self.buttons_index_["share"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_stereo_link_state < pi/2:
+                self.servo_stereo_link_state += 0.025
+            msg.data = self.servo_stereo_link_state
+            self.ricketts_stereo_link_servo_pub.publish(msg)
+        if axes[self.axes_index_["arrow_LR"]] == 1 and buttons[self.buttons_index_["share"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_stereo_link_state > -pi/2:
+                self.servo_stereo_link_state -= 0.025
+            msg.data = self.servo_stereo_link_state
+            self.ricketts_stereo_link_servo_pub.publish(msg)
+        if axes[self.axes_index_["arrow_UD"]] == 1 and buttons[self.buttons_index_["share"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_stereo_state < pi/2:
+                self.servo_stereo_state += 0.025
+            msg.data = self.servo_stereo_state
+            self.ricketts_stereo_camera_servo_pub.publish(msg)
+        if axes[self.axes_index_["arrow_UD"]] == -1 and buttons[self.buttons_index_["share"]] == 1:
+            # self.get_logger().info("options + ArrowLR pressed: controlling front monocular camera")
+            msg = Float64()
+            if self.servo_stereo_state > -pi/2:
+                self.servo_stereo_state -= 0.025
+            msg.data = self.servo_stereo_state
+            self.ricketts_stereo_camera_servo_pub.publish(msg)
 
-            msg.data = -self.servo_state
-            self.mola_lightR_servo_pub.publish(msg)
-        if buttons[self.buttons_index_["L1"]] == 1:
-            self.get_logger().info("L1 pressed")
-            msg = Float64()
-            if self.servo_state > 0:
-                self.servo_state -= 0.05
-            msg.data = self.servo_state
-            self.mola_lightL_servo_pub.publish(msg)
-            
-            msg.data = -self.servo_state
-            self.mola_lightR_servo_pub.publish(msg)
 
         # Handle SHARE button for toggling lights (edge detection)
-        share_button_state = buttons[self.buttons_index_["share"]] == 1
+        share_button_state = buttons[self.buttons_index_["ps"]] == 1
         if share_button_state and not self.share_button_pressed:
             # Button just pressed (rising edge)
             self.toggle_lights()

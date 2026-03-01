@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="ricketts" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="materials.xacro" />
+
+    <link name="ricketts_frame">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_frame.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="ricketts_frame"/>
+      </visual>
+    </link>
+
+    <link name="ricketts_float">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_float.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="ricketts_equipment">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_equipment.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="ricketts_ducts">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_ducts.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="ricketts_front_camera_link">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_frame_to_camera_link.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+    </link>
+
+    <link name="ricketts_front_camera">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_front_camera.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <!-- <material name="ricketts_front_camera"/> -->
+      </visual>
+    </link>
+
+    <link name="ricketts_stereo_camera_link">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_frame_to_camera_link.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+    </link>
+
+    <link name="ricketts_stereo_camera">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/rviz/ricketts_stereo_camera.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <!-- <material name="ricketts_stereo_camera"/> -->
+      </visual>
+    </link>
+
+    <!-- PROPELLER LU -->
+    <link name="ricketts_propLU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propLU" type="fixed">
+	  <origin rpy="${-pi/12} ${pi} 0.0" xyz="0.5862 -0.6582 -1.0133"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propLU" /> 
+    </joint>
+
+    <!-- PROPELLER RU -->
+    <link name="ricketts_propRU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propRU" type="fixed">
+	  <origin rpy="${pi/12} ${pi} 0.0" xyz="0.5862 0.6582 -1.0133"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propRU" /> 
+    </joint>
+
+
+    <!-- PROPELLER BU -->
+    <link name="ricketts_propBU">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propBU" type="fixed">
+	  <origin rpy="0.0 ${pi} 0.0" xyz="-1.2834 0.0 -0.9832"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propBU" /> 
+    </joint>
+
+    <!-- PROPELLER FL -->
+    <link name="ricketts_propFL">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propFL" type="fixed">
+	  <origin rpy="0.0 ${pi/2} ${pi/4}" xyz="1.2564 -0.4709 -0.3321"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propFL" /> 
+    </joint>
+
+    <!-- PROPELLER FR -->
+    <link name="ricketts_propFR">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propFR" type="fixed">
+	  <origin rpy="0.0 ${pi/2} ${-pi/4}" xyz="1.2564 0.4709 -0.3321"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propFR" /> 
+    </joint>
+
+    <!-- PROPELLER BL -->
+    <link name="ricketts_propBL">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propBL" type="fixed">
+	  <origin rpy="0.0 ${-pi/2} ${-pi/2 + pi/4}" xyz="-1.2834 -0.6001 -0.3321"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propBL" /> 
+    </joint>
+
+    <!-- PROPELLER BR -->
+    <link name="ricketts_propBR">
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ricketts_sim/data/ricketts/mesh/propeller.stl" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="propeller"/>
+      </visual>
+    </link>
+    <!-- <joint name="base_propLFU" type="continuous">
+      <origin rpy="0.0 -${45*pi/180} -${135*pi/180}" xyz="0.3 -0.182 -0.105"/>
+      <parent link="ricketts_base" />
+      <child link="ricketts_propLFU" /> 
+			<axis xyz="1.0 0.0 0.0"/>
+			<limit effort="1.0" velocity="1.0"/>
+    </joint> -->
+    <joint name="base_propBR" type="fixed">
+	  <origin rpy="0.0 ${-pi/2} ${pi/2 - pi/4}" xyz="-1.2643  0.6001 -0.3321"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_propBR" /> 
+    </joint>
+
+    <!-- JOINT FRAME TO OTHER ROBOT PARTS -->
+    <joint name="frame_float" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_float" /> 
+    </joint>
+    <joint name="frame_ducts" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_ducts" /> 
+    </joint>
+    <joint name="frame_equipment" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="ricketts_frame" />
+      <child link="ricketts_equipment" /> 
+    </joint>
+
+    <joint name="frame_front_camera_link" type="revolute">
+        <parent link="ricketts_frame"/>
+        <child link="ricketts_front_camera_link"/>
+		<origin xyz="1.441  0.0 -0.4254" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="1.0" velocity="1.0"/>
+    </joint>
+    <joint name="front_camera_link_camera" type="revolute">
+        <parent link="ricketts_front_camera_link"/>
+        <child link="ricketts_front_camera"/>
+		<origin xyz="0.0 0.0 0.23495" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="1.0" velocity="1.0"/>
+    </joint>
+
+    <joint name="frame_stereo_camera_link" type="revolute">
+        <parent link="ricketts_frame"/>
+        <child link="ricketts_stereo_camera_link"/>
+		<origin xyz="1.59918 0.0 -0.949676" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="1.0" velocity="1.0"/>
+    </joint>
+    <joint name="stereo_camera_link_stereo_camera" type="revolute">
+        <parent link="ricketts_stereo_camera_link"/>
+        <child link="ricketts_stereo_camera"/>
+		<origin xyz="0.0 0.0 0.23495" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="1.0" velocity="1.0"/>
+    </joint>
+
+</robot>
