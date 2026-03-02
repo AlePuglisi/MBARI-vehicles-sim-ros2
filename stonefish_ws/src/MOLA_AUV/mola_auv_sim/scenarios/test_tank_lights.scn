@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<scenario>	
+    <!-- TEST TANK LIGHTS -->
+	<!-- FRONT -->
+	<light name="Light_tank_F11">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 -2.9243 5.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F12">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 1.076 5.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F21">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 -1.0757 7.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F22">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 2.9243 7.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F31">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 -2.9243 13.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F32">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 1.076 13.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F41">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 -1.0757 15.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_F42">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 2.9243 15.0" rpy="0.0 ${-pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B11">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 -2.9243 5.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B12">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 1.076 5.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B21">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 -1.0757 7.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B22">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 2.9243 7.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B31">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 -2.9243 13.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B32">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 1.076 13.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B41">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="5.35 -1.0757 15.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_B42">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-5.35 2.9243 15.0" rpy="0.0 ${pi/2} 0.0"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_L11">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-2.9243 -5.35 5.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_L12">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="1.076 -5.35 5.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_L21">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-1.0757 -5.35 7.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_L22">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="2.9243 -5.35 7.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_L31">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-2.9243 -5.35 13.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_L32">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="1.076 -5.35 13.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<!-- <light name="Light_tank_L41">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-1.0757 -5.35 15.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light> -->
+
+	<light name="Light_tank_L42">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="0.0 -5.35 17.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_R11">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-2.9243 5.35 5.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_R12">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="1.076 5.35 5.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_R21">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-1.0757 5.35 7.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_R22">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="2.9243 5.35 7.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_R31">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-2.9243 5.35 13.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<light name="Light_tank_R32">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="1.076 5.35 13.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+	<!-- <light name="Light_tank_R41">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="-1.0757 5.35 15.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light> -->
+
+	<light name="Light_tank_R4">
+        <specs radius="0.1" cone_angle="30.0" illuminance="4000.0"/>
+        <color temperature="5600.0"/>
+		<world_transform xyz="0.0 5.35 17.0" rpy="0.0 ${pi/2} ${-pi/2}"/>
+		<ros_service topic="/tank/lights"/>
+	</light>
+
+</scenario>
