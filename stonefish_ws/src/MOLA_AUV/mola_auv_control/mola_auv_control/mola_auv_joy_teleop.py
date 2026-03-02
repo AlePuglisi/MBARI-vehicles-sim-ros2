@@ -56,6 +56,13 @@ class WeightedJoystickController(Node):
 
         self.lightR_switch_cli = self.create_client(SetBool, '/mola_auv/lights/right')
 
+        self.in_tank = True
+        if self.in_tank:
+            self.tank_lights_on = True
+            self.tank_lights_switch_cli = self.create_client(SetBool, '/tank/lights')
+            while not self.tank_lights_switch_cli.wait_for_service(timeout_sec=1.0):
+                self.get_logger().info('Waiting for tank light service...')
+
         # Wait for services to be available
         while not self.lightL_switch_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for left light service...')
@@ -65,7 +72,7 @@ class WeightedJoystickController(Node):
         self.get_logger().info('Both light services are available')
 
         # Track light state for toggling
-        self.lights_on = False
+        self.lights_on = True
         self.share_button_pressed = False  # For edge detection
 
         # Joystick mapping
@@ -222,6 +229,21 @@ class WeightedJoystickController(Node):
         
         self.get_logger().info(f'Toggling lights {"ON" if self.lights_on else "OFF"}')
 
+    def toggle_tank_lights(self):
+        """Toggle lights on/off by calling both service clients"""
+        # Toggle state
+        self.tank_lights_on = not self.tank_lights_on
+        
+        # Create service request
+        request = SetBool.Request()
+        request.data = self.lights_on
+        
+        # Call left light service asynchronously
+        future_tank = self.tank_lights_switch_cli.call_async(request)
+        future_tank.add_done_callback(self.light_left_callback)
+        
+        self.get_logger().info(f'Toggling Tank lights {"ON" if self.lights_on else "OFF"}')
+
     def light_left_callback(self, future):
         """Callback for left light service response"""
         try:
@@ -305,6 +327,9 @@ class WeightedJoystickController(Node):
             
             msg.data = -self.servo_state
             self.mola_lightR_servo_pub.publish(msg)
+
+        if self.in_tank and buttons[self.buttons_index_["share"]] == 1 and buttons[self.buttons_index_["options"]] == 1:
+            self.toggle_tank_lights()
 
         # Handle SHARE button for toggling lights (edge detection)
         share_button_state = buttons[self.buttons_index_["share"]] == 1
