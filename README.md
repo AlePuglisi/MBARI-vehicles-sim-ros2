@@ -57,7 +57,7 @@ For a basic implementation without additional thirdparty packages and libraries 
 
 <image width=356 heigth=263 src=assets/images/MOLA_sim.png> <image width=332 heigth=263 src=assets/images/MOLA.jpg>
 
-Personal attemp to create a stonefish based ROS2 simulation of MOLA AUV, a novel underwater vehicle from MABRI's [CoMPAS Lab](https://www.mbari.org/team/compas-lab-control-modeling-and-perception-of-autonomous-systems-laboratory/). The purpose of this simulation is to experiment with a 6DOFs agile and hydrobathic AUV, integrating its actuation and sensing technologies.
+Attempt to create a stonefish based ROS2 simulation of MOLA AUV, a novel underwater vehicle from MABRI's [CoMPAS Lab](https://www.mbari.org/team/compas-lab-control-modeling-and-perception-of-autonomous-systems-laboratory/). The purpose of this simulation is to experiment with a 6DOFs agile and hydrobathic AUV, integrating its actuation and sensing technologies.
 I try to respect as much as possible the real system, based on available vehicle informations such as the official descriptions and papers in which it is used. However, some paramters of the vehicle are not fully accurate and based on realistic assumptions (geometry, density distribution, thruster motors, and sensors configuration)
 
 
@@ -120,6 +120,7 @@ To start the monocular node, from the [ORB_SLAM3_ROS2](stonefish_ws/src/thirdpar
 - vocabulary/ORBvoc.txt = <path_to_vocabulary> <br>
 - config/monocular/stonefishMOLA.yaml= <path_to_yaml_config> <br>
 <br>
+
 ```
 ros2 run orbslam3_mbari mono vocabulary/ORBvoc.txt config/monocular/stonefishMOLA.yaml
 ```
@@ -138,8 +139,8 @@ Documenting this process could guide anyone that wants to define his custom mode
 #### Step 0: Define the 3D Geometric Model
 I start by analyzing the geometric structure and dimensions of the MOLA AUV from the [official MBARI's post](https://www.mbari.org/news/mbaris-newest-underwater-robot-seeks-to-make-ocean-exploration-more-accessible/) presenting the new platform and the extensive [vehicle description](https://www.mbari.org/technology/mola-auv/). Being a custom [Boxfish AUV](https://www.boxfishrobotics.com/products/boxfish-auv/boxfish-auv-features/) platform, I get additional information and search online for any useful related information. 
 
-Finally, I model the structure and painted the simple textures in blender, using simple geometries. This first model is used just for visualization purpose.
-In parallel, I model a simplified physical model, that will allow to make hydrodynamics faster and more realistic in stonefish. <br>
+Finally, I model the structure and painted the simple textures in blender, using simple geometries. This first model is used just for visualization purpose (left image below).
+In parallel, I model a simplified physical model (right image below), that will allow to make hydrodynamics faster and more realistic in stonefish. <br>
 (You can find model on my [sketchfab](https://sketchfab.com/3d-models/unofficial-mbari-mola-auv-8414b1b7e94c4212a5e7fcd667551858). I also uplad simple 3d models for simulation on my [profile](https://sketchfab.com/AlessandroPuglisi))
 
 <image width=380 heigth=229 src=assets/images/MOLA_blender.png> <image width=380 heigth=229 src=assets/images/MOLA_blender_phy.png>
