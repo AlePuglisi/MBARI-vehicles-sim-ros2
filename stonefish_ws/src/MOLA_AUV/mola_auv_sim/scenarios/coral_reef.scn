@@ -45,7 +45,7 @@
         <world_transform xyz="0.0 0.0 8.0" rpy="0.0 0.0 0.0"/>
     </static>     
 
-    <!-- <static name="CalibChess14x10" type="model">
+    <static name="CalibChess14x10" type="model">
         <physical>
             <mesh filename="calibration_marker/mesh/supportA4.obj" scale="2.0" convex="false"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -53,16 +53,13 @@
         <material name="Neutral"/>
         <look name="calibChess14x10"/>
         <world_transform xyz="2.0 0.0 2.0" rpy="0.0 0.0 0.0"/>
-    </static>    -->
+    </static>   
 
     <include file="$(find mola_auv_sim)/scenarios/corals.scn"/>
 
     <!--   Inlcude Addiitonal world actuators/sensors (lights, cameras, etc) not attached to Robots  -->
-
-    <!--   Inlcude Robots  -->
+    
+    <!--   Inlcude Robots  -->  
     <include file="$(find mola_auv_sim)/scenarios/mola_auv.scn"/>
-    <!-- <include file="$(find bluerov2_sim)/scenarios/bluerov2.scn"/> -->
-
-
 
 </scenario>

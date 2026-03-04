@@ -25,14 +25,14 @@ class WeightedJoystickController(Node):
 
         self.img_sub = self.create_subscription(
             Image,
-            '/mola_auv/camera/image_color',
+            '/mola_auv/front_camera/image_color',
             self.image_callback,
             10)
  
         self.cv_bridge = CvBridge() 
         self.img_count = 1
         self.cv_image = None
-        self.img_path = "/home/ale/tutorials/stonefish-learning/stonefish_ws/src/MBARI/MOLA_AUV/mola_auv_sim/data/images/"
+        self.img_path = "/home/ale/projects/MBARI-vehicles-sim-ros2/stonefish_ws/src/MOLA_AUV/mola_auv_sim/data/images"
 
         self.rov_control_pub = self.create_publisher(
             Float64MultiArray, 
@@ -56,7 +56,7 @@ class WeightedJoystickController(Node):
 
         self.lightR_switch_cli = self.create_client(SetBool, '/mola_auv/lights/right')
 
-        self.in_tank = True
+        self.in_tank = False
         if self.in_tank:
             self.tank_lights_on = True
             self.tank_lights_switch_cli = self.create_client(SetBool, '/tank/lights')
