@@ -52,9 +52,135 @@ For a basic implementation without additional thirdparty packages and libraries 
 </details>
 
 
-### MOLA AUV
+### MOLA AUV: 
+[MOLA AUV = multimodality, observing, low-cost, agile autonomous underwater vehicle]
+
 <image width=356 heigth=263 src=assets/images/MOLA_sim.png> <image width=332 heigth=263 src=assets/images/MOLA.jpg>
-    
+
+Personal attemp to create a stonefish based ROS2 simulation of MOLA AUV, a novel underwater vehicle from MABRI's [CoMPAS Lab](https://www.mbari.org/team/compas-lab-control-modeling-and-perception-of-autonomous-systems-laboratory/). The purpose of this simulation is to experiment with a 6DOFs agile and hydrobathic AUV, integrating its actuation and sensing technologies.
+I try to respect as much as possible the real system, based on available vehicle informations such as the official descriptions and papers in which it is used. However, some paramters of the vehicle are not fully accurate and based on realistic assumptions (geometry, density distribution, thruster motors, and sensors configuration)
+
+
+### Running MOLA simulations
+
+To launch the full simulation with the joystick based teleoperation and additional ROS2 nodes responsible for rviz visualization and ground truth publishing 
+
+```
+ros2 launch mola_auv_sim mola_auv_sim_teleop.launch.py
+```
+
+The loaded underwater simulation world is specified as a [launch argument](stonefish_ws/src/MOLA_AUV/mola_auv_sim/launch/mola_auv_sim_teleop.launch.py#L39) of the stonefish simulator launcher in [``stonefish_simulator.launch.py``](stonefish_ws/src/MOLA_AUV/mola_auv_sim/launch/mola_auv_sim_teleop.launch.py).
+
+I'm actively defining new underwater world, you can find the available ones in [``mola_auv_sim/scenarios``](stonefish_ws/src/MOLA_AUV/mola_auv_sim/scenarios). Right now the avilable ones are: 
+- ``coral_reef.scn``: define a small coral reef with some coral reef restoration frames. The restoration frames contain apriltag markers to support robust localization and navigation. 
+- ``tank.scn``: define an approximated digital twing of the salt water test tank of MBARI. A prototype docking station with fiducial apriltag markers is integrated in the simulation and can be easily removed. Adittionally, lights on the side of the tanks are integrated and can be switched on/off (pressing share+options if properly configured in the teleop node). 
+
+Note that unfortunately the 3D model is currently not optimal for interacting with object with complex collision shapes (like the docking station). Now I'm focusing on the perception aspects, but I may soon investigate on how to optimize that aspect.
+
+
+Additional ROS2 nodes are available and can be easily integrated in the launch file or excecuted opening another terminal while the simulation is running.
+
+**Plotting Sensors Reading** (Protptype) <br>
+
+To open a window with the readings from the IMU (accelerometer + gyroscope), DVL (linear velocity + altitude from seafloor), depth, run the following node:
+
+```
+ros2 run mola_auv_estimation mola_auv_plot
+```
+
+**Localizing and Classifing AprilTag Markers** <br>
+
+To localize apriltag markers, the python apriltag library is used. 
+While for Aruco markers it existis some ROS2 packages, here I just tried to integrate the features using the basic python library.
+
+Since it is not recommended to install additional python packages in the basic environment, I'm handling additional libraries with a conda enviornment. <br> 
+**Discaimer**: The way how I run externally installed python packages in my python nodes is probably not the best practice. 
+
+Create the conda environment, activate the env and install the apriltag library.
+
+Force ROS to use the conda packages, for example with a python3.12  environment 
+
+```
+export PYTHONPATH=$CONDA_PREFIX/lib/python3.12/site-packages:$PYTHONPATH
+```
+Now you should be able to run the node without getting the error of the library not found. 
+
+```
+ros2 run mola_auv_estimation mola_auv_apriltag
+```
+
+There is definitely a better way to handle external python packages in ros2 python nodes... I'm planning to document better on this, since I'm planning to integrate many other external libraries (such as ultarlytics for YOLO models).
+
+**Running Monocular ORB-SLAM3** <br>
+ 
+I have tested an open source [ORB-SLAM3 ROS2 wrapper](https://github.com/zang09/ORB_SLAM3_ROS2), which may require some time to be properly installed. That package is currently in the [/thridparty](stonefish_ws/src/thirdparty) directory, and by default the build is skipped thanks to the [``COLCON_IGNORE``](stonefish_ws/src/thirdparty/ORB_SLAM3_ROS2/COLCON_IGNORE) file. <br>
+After properly setting up the wrapper and unzipping the ORBvoc.txt.tar.gz, you can easily use it with the MOLA AUV. For now I've tested only the monocular VSLAM. I'm looking for another ORB-SLAM3 ROS2 wrapper, since this one doesn't integrate well in the ROS2 echosystem. 
+
+To start the monocular node, from the [ORB_SLAM3_ROS2](stonefish_ws/src/thirdparty/ORB_SLAM3_ROS2/) directory:
+- vocabulary/ORBvoc.txt = <path_to_vocabulary> <br>
+- config/monocular/stonefishMOLA.yaml= <path_to_yaml_config> <br>
+<br>
+```
+ros2 run orbslam3_mbari mono vocabulary/ORBvoc.txt config/monocular/stonefishMOLA.yaml
+```
+
+
+### The (current) ROS2 Components behind the simulation
+
+The simulation is based on the C++ stonefish library, wrapped by stonefish_ros2. Once the scenario files for the environment, world, and robot is defined, it is ready to be launched from the ``stonefish_simulator.launch.py``.
+
+
+
+### Implementation details 
+Details on how the simulation model has been implemented. 
+Documenting this process could guide anyone that wants to define his custom model. Additionally, the implementation details on this model is helpful to understand and customize the current simulation.
+
+#### Step 0: Define the 3D Geometric Model
+I start by analyzing the geometric structure and dimensions of the MOLA AUV from the [official MBARI's post](https://www.mbari.org/news/mbaris-newest-underwater-robot-seeks-to-make-ocean-exploration-more-accessible/) presenting the new platform and the extensive [vehicle description](https://www.mbari.org/technology/mola-auv/). Being a custom [Boxfish AUV](https://www.boxfishrobotics.com/products/boxfish-auv/boxfish-auv-features/) platform, I get additional information and search online for any useful related information. 
+
+Finally, I model the structure and painted the simple textures in blender, using simple geometries. This first model is used just for visualization purpose.
+In parallel, I model a simplified physical model, that will allow to make hydrodynamics faster and more realistic in stonefish. <br>
+(You can find model on my [sketchfab](https://sketchfab.com/3d-models/unofficial-mbari-mola-auv-8414b1b7e94c4212a5e7fcd667551858). I also uplad simple 3d models for simulation on my [profile](https://sketchfab.com/AlessandroPuglisi))
+
+<image width=380 heigth=229 src=assets/images/MOLA_blender.png> <image width=380 heigth=229 src=assets/images/MOLA_blender_phy.png>
+
+#### Step 1.a: Define the Robot description for stonefish (.scn)
+
+The basic stonefish scenario file of a robot require the materials, looks and base link (refer to the official [documentation](https://stonefish.readthedocs.io/en/latest/index.html))
+
+Stonefish use the NED reference system, simple to respect by using the [guidelines from the documentation](https://stonefish.readthedocs.io/en/latest/scenario.html#preparing-geometry-files).
+
+Right now, the physical behavior is realistic and the system is neutrally buoyant, thanks to a fine tuning of the links' properties. 
+Despite this, I don't think that the current model captures the real dynamics of the system. 
+Therefore, better tuning may be required if you want to use this simulation to test model-based control algorithms or anything else that requires an accurate dynamic model.  
+
+
+#### Step 1.b: Define the Robot description for rviz (.xacro.urdf)
+
+Diffeently from the scenario file, the urdf in this case is just used to have a robot model for visualization in ROS2. 
+Remember that Stonefish is supposed to be the real system, and you would like to have some online visualization tool such as rviz. <br>
+
+To define the 3d model for rviz, the propellers are considered fixed, while the joint state of the light servo are revolute joints.
+The state of those servos is published by [``mola_auv_joint_states_simple``](stonefish_ws/src/MOLA_AUV/mola_auv_control/mola_auv_control/mola_auv_joint_states_simple.py), a node that broadcast useful joint states for visualization and control.
+
+#### Step 2: Integrating MOLA thrusters
+
+#### Step 3: Integarting Additional Actuators (e.g. Lights, Servo)
+
+#### Step 4: Integrating Sensors
+
+#### Step 5: Defining a Custom World
+
+#### Step 6: Implementing additonal ROS2 Nodes for Stonefish-ROS mapping
+
+#### Step 7: Implementing Teleopeartion ROS2 Node 
+
+
+#### Step 8: Launching the Simulation ! 
+
+
+
+
 ### ROV Doc Ricketts
 <image width=400 heigth=275 src=assets/images/Ricketts_sim.png> <image width=348 heigth=275 src=assets/images/Ricketts.jpg>
 
