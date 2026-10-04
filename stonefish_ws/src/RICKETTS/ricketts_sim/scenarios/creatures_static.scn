@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<scenario>
+    
+    <static name="DinnerPlateJelly" type="model">
+		<physical>
+			<mesh filename="dinner_plate_jelly/dinner_plate_jelly_phy.obj" scale="1.0"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</physical>
+		<visual>
+			<mesh filename="dinner_plate_jelly/dinner_plate_jelly.obj" scale="1.0"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		</visual>
+		<material name="Neutral"/>
+		<look name="dinner_plate_jelly"/>
+		<world_transform xyz="0.0 0.0 30.0" rpy="0.0 0.0 0.0"/>
+	</static>
+
+</scenario>

@@ -123,11 +123,6 @@ Visualization Manager:
         world_ned:
           odom:
             mola_auv_base:
-              mola_auv_lightL:
-                {}
-              mola_auv_lightR:
-                {}
-            mola_auv_base_gt:
               mola_auv_dome:
                 {}
               mola_auv_frame:
@@ -147,6 +142,11 @@ Visualization Manager:
               mola_auv_propRFD:
                 {}
               mola_auv_propRFU:
+                {}
+            mola_auv_base_gt:
+              mola_auv_lightL:
+                {}
+              mola_auv_lightR:
                 {}
       Update Interval: 0
       Value: true
@@ -291,85 +291,20 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /robot_description_gt
-      Enabled: true
+      Enabled: false
       Links:
         All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        mola_auv_base_gt:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_dome:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_lightL:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_lightR:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propLBD:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propLBU:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propLFD:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propLFU:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propRBD:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propRBU:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propRFD:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mola_auv_propRFU:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
       Name: MOLA_GroundTruth
       TF Prefix: ""
       Update Interval: 0
-      Value: true
+      Value: false
       Visual Enabled: true
     - Class: rviz_default_plugins/Image
       Enabled: true

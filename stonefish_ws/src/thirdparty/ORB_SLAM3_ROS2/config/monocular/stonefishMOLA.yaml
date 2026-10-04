@@ -62,3 +62,6 @@ Viewer.ViewpointX: 0
 Viewer.ViewpointY: -0.7
 Viewer.ViewpointZ: -3.5 # -1.8
 Viewer.ViewpointF: 500
+
+# Scale factor for the current frame image window (0.5 = half size, 0.25 = quarter size)
+Viewer.imageViewScale: 0.25

@@ -34,6 +34,7 @@
     <!--   Inlcude objects (obstacles, map features, dynamic objects, creatures)  -->
     <!-- <include file="$(find ricketts_sim)/scenarios/creatures_animated.scn"/> -->
     <!-- <include file="$(find ricketts_sim)/scenarios/creatures_dynamics.scn"/> -->
+    <include file="$(find ricketts_sim)/scenarios/creatures_static.scn"/>
 
     <!--   Inlcude Addiitonal world actuators/sensors (lights, cameras, etc) not attached to Robots  -->
 
