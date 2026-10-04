@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <scenario>
     
-	<dynamic name="DinnerPlateJelly" type="model" physics="submerged" buoyant="true">
+	<look name="dinner_plate_jelly" rgb="0.52 0.72 0.89" roughness="0.3"/>
+	
+    <static name="DinnerPlateJelly" type="model">
 		<physical>
 			<mesh filename="dinner_plate_jelly/dinner_plate_jelly_phy.obj" scale="1.0"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -10,14 +12,9 @@
 			<mesh filename="dinner_plate_jelly/dinner_plate_jelly.obj" scale="1.0"/>
 			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 		</visual>
-
-		<material name="Jelly"/>
+		<material name="Neutral"/>
 		<look name="dinner_plate_jelly"/>
-
-		<mass value="0.25"/>
-		<inertia xyz="1.0 1.0 1.0"/>
-
-		<world_transform rpy="0.0 0.0 0.0" xyz="5.0 0 2.0"/>
-	</dynamic>
+		<world_transform xyz="0.0 0.0 5.0" rpy="0.0 0.0 0.0"/>
+	</static>
 
 </scenario>
