@@ -23,7 +23,7 @@ class ImageProcessing(Node):
         self.apiltag_image_publisher = self.create_publisher(Image, 'mola_auv/estimation/apriltag', 10)
         
         # Subscriptions
-        self.subscription_thruster_state = self.create_subscription(
+        self.subscription_forward_image = self.create_subscription(
             Image,
             '/mola_auv/front_camera/image_color',
             self.camera_image_callback,
