@@ -69,11 +69,11 @@ To launch the full simulation with the joystick based teleoperation and addition
 ros2 launch mola_auv_sim mola_auv_sim_teleop.launch.py
 ```
 
-The loaded underwater simulation world is specified as a [launch argument](stonefish_ws/src/MOLA_AUV/mola_auv_sim/launch/mola_auv_sim_teleop.launch.py#L39) of the stonefish simulator launcher in [``stonefish_simulator.launch.py``](stonefish_ws/src/MOLA_AUV/mola_auv_sim/launch/mola_auv_sim_teleop.launch.py).
+The loaded underwater simulation world is specified as a [launch argument](stonefish_ws/src/MOLA_AUV/mola_auv_sim/launch/mola_auv_sim_teleop.launch.py#L39) of the stonefish simulator launcher ``stonefish_simulator.launch.py`` in [``mola_auv_sim_teleop.launch.py``](stonefish_ws/src/MOLA_AUV/mola_auv_sim/launch/mola_auv_sim_teleop.launch.py).
 
-I'm actively defining new underwater world, you can find the available ones in [``mola_auv_sim/scenarios``](stonefish_ws/src/MOLA_AUV/mola_auv_sim/scenarios). Right now the avilable ones are: 
-- ``coral_reef.scn``: define a small coral reef with some coral reef restoration frames. The restoration frames contain apriltag markers to support robust localization and navigation. 
-- ``tank.scn``: define an approximated digital twing of the salt water test tank of MBARI. A prototype docking station with fiducial apriltag markers is integrated in the simulation and can be easily removed. Adittionally, lights on the side of the tanks are integrated and can be switched on/off (pressing share+options if properly configured in the teleop node). 
+I'm actively defining new underwater worlds, you can find the available ones in [``mola_auv_sim/scenarios``](stonefish_ws/src/MOLA_AUV/mola_auv_sim/scenarios). Right now the avilable ones are: 
+- ``coral_reef.scn``: defines a small coral reef with some coral reef restoration frames. The restoration frames contain apriltag markers to support robust localization and navigation. 
+- ``tank.scn``: defines an approximated digital twing of the salt water test tank of MBARI. A prototype docking station with fiducial apriltag markers is integrated in the simulation and can be easily removed. Adittionally, lights on the side of the tanks are integrated and can be switched on/off (pressing share+options if properly configured in the teleop node). 
 
 Note that unfortunately the 3D model is currently not optimal for interacting with object with complex collision shapes (like the docking station). Now I'm focusing on the perception aspects, but I may soon investigate on how to optimize that aspect.
 
@@ -140,8 +140,8 @@ Documenting this process could guide anyone that wants to define his custom mode
 I start by analyzing the geometric structure and dimensions of the MOLA AUV from the [official MBARI's post](https://www.mbari.org/news/mbaris-newest-underwater-robot-seeks-to-make-ocean-exploration-more-accessible/) presenting the new platform and the extensive [vehicle description](https://www.mbari.org/technology/mola-auv/). Being a custom [Boxfish AUV](https://www.boxfishrobotics.com/products/boxfish-auv/boxfish-auv-features/) platform, I get additional information and search online for any useful related information. 
 
 Finally, I model the structure and painted the simple textures in blender, using simple geometries. This first model is used just for visualization purpose (left image below).
-In parallel, I model a simplified physical model (right image below), that will allow to make hydrodynamics faster and more realistic in stonefish. <br>
-(You can find model on my [sketchfab](https://sketchfab.com/3d-models/unofficial-mbari-mola-auv-8414b1b7e94c4212a5e7fcd667551858). I also uplad simple 3d models for simulation on my [profile](https://sketchfab.com/AlessandroPuglisi))
+In parallel, I model a simplified physical structure (right image below), that will allow to make hydrodynamics faster and more realistic in stonefish. <br>
+(You can find it on my [sketchfab](https://sketchfab.com/3d-models/unofficial-mbari-mola-auv-8414b1b7e94c4212a5e7fcd667551858). I also uplad simple 3d models for simulation on my [profile](https://sketchfab.com/AlessandroPuglisi))
 
 <image width=380 heigth=229 src=assets/images/MOLA_blender.png> <image width=380 heigth=229 src=assets/images/MOLA_blender_phy.png>
 
@@ -158,13 +158,13 @@ Therefore, better tuning may be required if you want to use this simulation to t
 
 #### Step 1.b: Define the Robot description for rviz (.xacro.urdf)
 
-Diffeently from the scenario file, the urdf in this case is just used to have a robot model for visualization in ROS2. 
+Differently from the scenario file, the urdf in this case is just used to have a robot model for visualization in ROS2. 
 Remember that Stonefish is supposed to be the real system, and you would like to have some online visualization tool such as rviz. <br>
 
 To define the 3d model for rviz, the propellers are considered fixed, while the joint state of the light servo are revolute joints.
-The state of those servos is published by [``mola_auv_joint_states_simple``](stonefish_ws/src/MOLA_AUV/mola_auv_control/mola_auv_control/mola_auv_joint_states_simple.py), a node that broadcast useful joint states for visualization and control.
+The state of those servos is published by [``mola_auv_joint_states_simple``](stonefish_ws/src/MOLA_AUV/mola_auv_control/mola_auv_control/mola_auv_joint_states_simple.py), a node that broadcast useful joint states for ROS visualization and control.
 
-#### Step 2: Integrating MOLA thrusters
+#### Step 2: Integrating and Arranging MOLA thrusters
 
 #### Step 3: Integarting Additional Actuators (e.g. Lights, Servo)
 
@@ -174,7 +174,7 @@ The state of those servos is published by [``mola_auv_joint_states_simple``](sto
 
 #### Step 6: Implementing additonal ROS2 Nodes for Stonefish-ROS mapping
 
-#### Step 7: Implementing Teleopeartion ROS2 Node 
+#### Step 7: Implementing Teleoperation ROS2 Node 
 
 
 #### Step 8: Launching the Simulation ! 

@@ -5,6 +5,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 from sensor_msgs.msg import CameraInfo
 
+from rcl_interfaces.msg import SetParametersResult
+
 import numpy as np 
 import os
 
@@ -41,19 +43,47 @@ class ImageProcessing(Node):
         # Tag size in meters
         self.tag_size = 0.160
 
-        apriltag_options = apriltag.DetectorOptions(families='tag25h9', 
-                                                    border=1,
-                                                    nthreads=4,
-                                                    quad_decimate=2.0,        # Downsample by 2x (reduces contours)
-                                                    quad_blur=0.8,            # Apply blur to reduce noise
-                                                    refine_edges=True,
-                                                    debug=False) 
-        
-        self.apriltag_detector = apriltag.Detector(apriltag_options)
+        # Declare the parameter with default value
+        self.declare_parameter('dict', 'tag36h11')
+
+        # Build detector with initial value
+        tag_family = self.get_parameter('dict').get_parameter_value().string_value
+        self._init_detector(tag_family)
+
+        # Register callback for runtime reconfiguration
+        self.add_on_set_parameters_callback(self._on_parameter_change)
 
 
         self.get_logger().info('MOLA AprilTag Estimation Node Initialized')
     
+    def _init_detector(self, family: str):
+        """Initialize detector with the given tag family"""
+        valid_families = {'36h11': 'tag36h11', '25h9': 'tag25h9'}
+        
+        # Accept both short form (36h11) and full form (tag36h11)
+        resolved = valid_families.get(family, family)
+        
+        if resolved not in valid_families.values():
+            self.get_logger().warn(f"Unknown tag family '{family}', defaulting to tag36h11")
+            resolved = 'tag36h11'
+
+        options = apriltag.DetectorOptions(
+            families=resolved,
+            border=1,
+            nthreads=4,
+            quad_decimate=2.0,
+            quad_blur=0.8,
+            refine_edges=True,
+            debug=False
+        )
+        self.apriltag_detector = apriltag.Detector(options)
+        self.get_logger().info(f"Detector initialized with family: {resolved}")
+
+    def _on_parameter_change(self, params) -> SetParametersResult:
+        for param in params:
+            if param.name == 'dict':
+                self._init_detector(param.value)
+        return SetParametersResult(successful=True)
 
     def camera_info_callback(self, msg: CameraInfo):
         """Extract camera parameters from CameraInfo message"""

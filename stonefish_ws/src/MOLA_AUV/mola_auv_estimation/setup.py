@@ -25,7 +25,6 @@ setup(
     entry_points={
         'console_scripts': [
             'mola_auv_apriltag = mola_auv_estimation.mola_auv_apriltag:main',
-            # 'mola_auv_ekf = mola_auv_estimation.mola_auv_ekf:main',
             'mola_auv_plot = mola_auv_estimation.mola_auv_plot:main',           
         ],
     },

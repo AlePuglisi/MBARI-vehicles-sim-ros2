@@ -1,12 +1,13 @@
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, GroupAction, IncludeLaunchDescription, TimerAction
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import Command
 from ament_index_python.packages import get_package_share_directory
 import xacro 
+
 
 def generate_launch_description():
     description_path = get_package_share_directory('mola_auv_sim')
@@ -23,6 +24,12 @@ def generate_launch_description():
         description='Name of the robot'
     )
 
+    scenario_arg = DeclareLaunchArgument(
+        'scenario',
+        default_value='ocean',
+        description='Name of the Simulation Scenario'
+    )
+
     # Group action with namespace
     namespace_action = GroupAction(
         actions=[
@@ -36,7 +43,8 @@ def generate_launch_description():
                         FindPackageShare('mola_auv_sim'), 'data'
                     ]),
                     'scenario_desc': PathJoinSubstitution([
-                        FindPackageShare('mola_auv_sim'), 'scenarios', 'tank.scn'
+                        FindPackageShare('mola_auv_sim'), 'scenarios',
+                        PythonExpression(["'", LaunchConfiguration('scenario'), "' + '.scn'"])
                     ]),
                     'simulation_rate': '100.0',
                     'window_res_x': '1200',
@@ -133,6 +141,7 @@ def generate_launch_description():
     
     return LaunchDescription([
         robot_name_arg,
+        scenario_arg,
         namespace_action,
 
         odom2tf_node, 
