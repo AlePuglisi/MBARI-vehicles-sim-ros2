@@ -75,7 +75,8 @@ int main(int argc, char **argv)
     std::string quality(argv[6]);
     if(quality == "low")
     {
-        s.shadows = sf::RenderQuality::LOW;
+        s.shadows = sf::RenderQuality::DISABLED;
+        // s.shadows = sf::RenderQuality::LOW;
         s.ao = sf::RenderQuality::DISABLED;
         s.atmosphere = sf::RenderQuality::LOW;
         s.ocean = sf::RenderQuality::LOW;
@@ -84,7 +85,8 @@ int main(int argc, char **argv)
     }
     else if(quality == "high")
     {
-        s.shadows = sf::RenderQuality::HIGH;
+        s.shadows = sf::RenderQuality::DISABLED;
+        // s.shadows = sf::RenderQuality::HIGH;
         s.ao = sf::RenderQuality::HIGH;
         s.atmosphere = sf::RenderQuality::HIGH;
         s.ocean = sf::RenderQuality::HIGH;
@@ -93,7 +95,8 @@ int main(int argc, char **argv)
     }
     else // "medium"
     {
-        s.shadows = sf::RenderQuality::MEDIUM;
+        s.shadows = sf::RenderQuality::DISABLED;
+        // s.shadows = sf::RenderQuality::MEDIUM;
         s.ao = sf::RenderQuality::MEDIUM;
         s.atmosphere = sf::RenderQuality::MEDIUM;
         s.ocean = sf::RenderQuality::MEDIUM;
